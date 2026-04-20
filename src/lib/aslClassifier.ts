@@ -33,15 +33,12 @@ function dist(a: Landmark, b: Landmark) {
 
 function isFingerExtended(lm: Landmark[], finger: keyof typeof FINGER_JOINTS) {
   const wrist = lm[0];
-  const j = FINGER_JOINTS[finger];
+  const j: any = FINGER_JOINTS[finger];
   if (finger === "thumb") {
-    // Thumb: compare tip-to-wrist vs ip-to-wrist (longer when extended)
     return dist(lm[j.tip], wrist) > dist(lm[j.ip], wrist) * 1.05;
   }
-  // Other fingers: tip y should be clearly above pip y (smaller y = higher in image)
-  // AND tip should be further from wrist than pip
-  const tipAbovePip = lm[j.tip].y < lm[(j as any).pip].y - 0.02;
-  const tipFurther = dist(lm[j.tip], wrist) > dist(lm[(j as any).pip], wrist) * 1.05;
+  const tipAbovePip = lm[j.tip].y < lm[j.pip].y - 0.02;
+  const tipFurther = dist(lm[j.tip], wrist) > dist(lm[j.pip], wrist) * 1.05;
   return tipAbovePip && tipFurther;
 }
 
