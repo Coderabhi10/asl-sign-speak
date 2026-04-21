@@ -13,10 +13,10 @@ export type SignGuide = {
   imageUrl?: string;
 };
 
+// Use direct file URLs (not /thumb/) — SVGs render natively in <img> at any size
+// and the /thumb/ endpoint requires a .png suffix for SVG sources, which broke loading.
 const wm = (file: string) =>
-  `https://upload.wikimedia.org/wikipedia/commons/thumb/${file}/320px-${file
-    .split("/")
-    .pop()}`;
+  `https://upload.wikimedia.org/wikipedia/commons/${file}`;
 
 export const ASL_ALPHABET: SignGuide[] = [
   {
