@@ -8,28 +8,35 @@ import { useSpeech } from "@/hooks/useSpeech";
 import { ASL_ALPHABET, COMMON_PHRASES, type SignGuide } from "@/lib/aslGuide";
 import { Search, Volume2, BookOpen, Hand } from "lucide-react";
 
+function SignIllustration({ sign }: { sign: SignGuide }) {
+  const [failed, setFailed] = useState(false);
+
+  if (sign.imageUrl && !failed) {
+    return (
+      <img
+        src={sign.imageUrl}
+        alt={`ASL hand sign for ${sign.letter}`}
+        loading="lazy"
+        className="h-full w-full object-contain p-3"
+        onError={() => setFailed(true)}
+      />
+    );
+  }
+
+  return (
+    <div className="flex h-full w-full flex-col items-center justify-center gap-3 text-center text-slate-900">
+      <Hand className="h-16 w-16 stroke-[1.75]" />
+      <span className="text-4xl font-black leading-none">{sign.letter.slice(0, 3)}</span>
+    </div>
+  );
+}
+
 function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => void }) {
   return (
     <Card className="group flex flex-col gap-3 border-border/50 bg-card/60 p-4 shadow-card backdrop-blur transition-smooth hover:border-primary/40 hover:shadow-glow">
-      <div className="relative flex h-36 items-center justify-center overflow-hidden rounded-xl bg-white ring-1 ring-border/40">
-        {sign.imageUrl ? (
-          <img
-            src={sign.imageUrl}
-            alt={`ASL hand sign for ${sign.letter}`}
-            loading="lazy"
-            className="h-full w-full object-contain p-2"
-          />
-        ) : (
-          <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-primary text-primary-foreground shadow-glow">
-              <Hand className="h-7 w-7" />
-            </div>
-            <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-              See description
-            </span>
-          </div>
-        )}
-        <span className="absolute left-2 top-2 rounded-md bg-background/80 px-2 py-0.5 text-xs font-bold text-foreground backdrop-blur">
+      <div className="relative flex h-44 items-center justify-center overflow-hidden rounded-xl bg-white ring-1 ring-border/40">
+        <SignIllustration sign={sign} />
+        <span className="absolute left-2 top-2 rounded-md bg-slate-900/80 px-2 py-0.5 text-xs font-bold text-white backdrop-blur">
           {sign.letter}
         </span>
         {sign.motion && (
@@ -43,7 +50,7 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
         <Button
           size="icon"
           variant="ghost"
-          className="absolute bottom-1 right-1 h-8 w-8 bg-background/70 opacity-70 backdrop-blur transition-smooth group-hover:opacity-100"
+          className="absolute bottom-1 right-1 h-8 w-8 bg-slate-900/55 text-white opacity-90 backdrop-blur transition-smooth hover:bg-slate-900/75 hover:text-white"
           onClick={() => onSpeak(sign.letter.replace(/_/g, " "))}
           aria-label={`Speak ${sign.letter}`}
         >

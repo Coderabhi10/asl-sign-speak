@@ -22,149 +22,149 @@ export const ASL_ALPHABET: SignGuide[] = [
   {
     letter: "A",
     shape: "Closed fist, thumb resting on the side (not tucked in).",
-    imageUrl: wm("f/f4/Sign_language_A.svg"),
+    imageUrl: wm("2/27/Sign_language_A.svg"),
   },
   {
     letter: "B",
     shape:
       "Flat palm facing forward, four fingers straight up, thumb folded across the palm.",
-    imageUrl: wm("9/9b/Sign_language_B.svg"),
+    imageUrl: wm("1/18/Sign_language_B.svg"),
   },
   {
     letter: "C",
     shape:
       "Curve all fingers and thumb to form the letter C, palm facing sideways.",
-    imageUrl: wm("4/4a/Sign_language_C.svg"),
+    imageUrl: wm("e/e3/Sign_language_C.svg"),
   },
   {
     letter: "D",
     shape:
       "Index finger pointing up, other fingers touch the thumb forming a circle.",
-    imageUrl: wm("c/c1/Sign_language_D.svg"),
+    imageUrl: wm("0/06/Sign_language_D.svg"),
   },
   {
     letter: "E",
     shape:
       "Fingers curled down to touch the thumb, thumb tucked under the fingertips.",
-    imageUrl: wm("4/4b/Sign_language_E.svg"),
+    imageUrl: wm("c/cd/Sign_language_E.svg"),
   },
   {
     letter: "F",
     shape:
       "Index and thumb touch in a circle (OK sign), other three fingers straight up.",
-    imageUrl: wm("3/39/Sign_language_F.svg"),
+    imageUrl: wm("8/8f/Sign_language_F.svg"),
   },
   {
     letter: "G",
     shape:
       "Index finger and thumb extended sideways, parallel, like a small gun pointing left.",
-    imageUrl: wm("2/2c/Sign_language_G.svg"),
+    imageUrl: wm("d/d9/Sign_language_G.svg"),
   },
   {
     letter: "H",
     shape: "Index and middle fingers extended sideways together, others tucked.",
-    imageUrl: wm("d/d8/Sign_language_H.svg"),
+    imageUrl: wm("9/97/Sign_language_H.svg"),
   },
   {
     letter: "I",
     shape: "Pinky finger up, all other fingers (and thumb) closed in a fist.",
-    imageUrl: wm("4/49/Sign_language_I.svg"),
+    imageUrl: wm("1/10/Sign_language_I.svg"),
   },
   {
     letter: "J",
     shape:
       "Start with the I sign, then draw the letter J in the air with your pinky.",
     motion: true,
-    imageUrl: wm("0/01/Sign_language_J.svg"),
+    imageUrl: wm("b/b1/Sign_language_J.svg"),
   },
   {
     letter: "K",
     shape:
       "Index up, middle finger out at an angle, thumb tucked between them.",
-    imageUrl: wm("2/2a/Sign_language_K.svg"),
+    imageUrl: wm("9/97/Sign_language_K.svg"),
   },
   {
     letter: "L",
     shape: "Index finger up, thumb out sideways, forming an L shape.",
-    imageUrl: wm("9/97/Sign_language_L.svg"),
+    imageUrl: wm("d/d2/Sign_language_L.svg"),
   },
   {
     letter: "M",
     shape:
       "Thumb tucked under three folded fingers (index, middle, ring) — three knuckles over thumb.",
-    imageUrl: wm("3/3b/Sign_language_M.svg"),
+    imageUrl: wm("c/c4/Sign_language_M.svg"),
   },
   {
     letter: "N",
     shape:
       "Thumb tucked under two folded fingers (index, middle) — two knuckles over thumb.",
-    imageUrl: wm("8/8a/Sign_language_N.svg"),
+    imageUrl: wm("e/e6/Sign_language_N.svg"),
   },
   {
     letter: "O",
     shape: "All fingers curve to meet the thumb, forming a round O shape.",
-    imageUrl: wm("9/9d/Sign_language_O.svg"),
+    imageUrl: wm("e/e0/Sign_language_O.svg"),
   },
   {
     letter: "P",
     shape:
       "Like K but rotated downward — palm faces down, middle finger points down.",
-    imageUrl: wm("a/a8/Sign_language_P.svg"),
+    imageUrl: wm("0/08/Sign_language_P.svg"),
   },
   {
     letter: "Q",
     shape: "Like G but rotated downward — index and thumb point down.",
-    imageUrl: wm("5/5e/Sign_language_Q.svg"),
+    imageUrl: wm("3/34/Sign_language_Q.svg"),
   },
   {
     letter: "R",
     shape: "Index and middle fingers up, crossed (middle in front of index).",
-    imageUrl: wm("3/3a/Sign_language_R.svg"),
+    imageUrl: wm("3/3d/Sign_language_R.svg"),
   },
   {
     letter: "S",
     shape: "Closed fist with the thumb wrapped across the front of the fingers.",
-    imageUrl: wm("a/a4/Sign_language_S.svg"),
+    imageUrl: wm("3/3f/Sign_language_S.svg"),
   },
   {
     letter: "T",
     shape:
       "Closed fist with the thumb tucked between the index and middle fingers.",
-    imageUrl: wm("0/0d/Sign_language_T.svg"),
+    imageUrl: wm("1/13/Sign_language_T.svg"),
   },
   {
     letter: "U",
     shape: "Index and middle fingers up together (touching), others closed.",
-    imageUrl: wm("6/6c/Sign_language_U.svg"),
+    imageUrl: wm("7/7c/Sign_language_U.svg"),
   },
   {
     letter: "V",
     shape:
       "Index and middle fingers up in a V (peace sign), others closed.",
-    imageUrl: wm("0/05/Sign_language_V.svg"),
+    imageUrl: wm("c/ca/Sign_language_V.svg"),
   },
   {
     letter: "W",
     shape:
       "Index, middle, and ring fingers up and spread, thumb holds down the pinky.",
-    imageUrl: wm("0/04/Sign_language_W.svg"),
+    imageUrl: wm("8/83/Sign_language_W.svg"),
   },
   {
     letter: "X",
     shape: "Index finger bent into a hook, all other fingers closed.",
-    imageUrl: wm("d/d3/Sign_language_X.svg"),
+    imageUrl: wm("b/b7/Sign_language_X.svg"),
   },
   {
     letter: "Y",
     shape:
       "Thumb and pinky extended (hang loose / 🤙), other fingers folded down.",
-    imageUrl: wm("1/12/Sign_language_Y.svg"),
+    imageUrl: wm("1/1d/Sign_language_Y.svg"),
   },
   {
     letter: "Z",
     shape: "Draw the letter Z in the air with your index finger.",
     motion: true,
-    imageUrl: wm("8/87/Sign_language_Z.svg"),
+    imageUrl: wm("0/0a/Sign_language_Z.svg"),
   },
 ];
 
