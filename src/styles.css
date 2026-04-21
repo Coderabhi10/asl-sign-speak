@@ -35,6 +35,10 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-glow: var(--primary-glow);
+  --color-sign-surface: var(--sign-surface);
+  --color-sign-foreground: var(--sign-foreground);
+  --color-sign-overlay: var(--sign-overlay);
+  --color-sign-overlay-foreground: var(--sign-overlay-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -73,6 +77,10 @@
   --primary: oklch(0.78 0.18 195);
   --primary-foreground: oklch(0.16 0.02 260);
   --primary-glow: oklch(0.85 0.15 175);
+  --sign-surface: oklch(0.99 0.003 250);
+  --sign-foreground: oklch(0.2 0.03 260);
+  --sign-overlay: oklch(0.2 0.03 260 / 0.82);
+  --sign-overlay-foreground: oklch(0.98 0.003 250);
   --secondary: oklch(0.27 0.03 260);
   --secondary-foreground: oklch(0.97 0.01 250);
   --muted: oklch(0.24 0.025 260);
@@ -114,6 +122,10 @@
   --popover-foreground: oklch(0.984 0.003 247.858);
   --primary: oklch(0.929 0.013 255.508);
   --primary-foreground: oklch(0.208 0.042 265.755);
+  --sign-surface: oklch(0.99 0.003 250);
+  --sign-foreground: oklch(0.2 0.03 260);
+  --sign-overlay: oklch(0.2 0.03 260 / 0.82);
+  --sign-overlay-foreground: oklch(0.98 0.003 250);
   --secondary: oklch(0.279 0.041 260.031);
   --secondary-foreground: oklch(0.984 0.003 247.858);
   --muted: oklch(0.279 0.041 260.031);
