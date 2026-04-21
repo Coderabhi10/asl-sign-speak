@@ -35,6 +35,10 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary-glow: var(--primary-glow);
+  --color-sign-surface: var(--sign-surface);
+  --color-sign-foreground: var(--sign-foreground);
+  --color-sign-overlay: var(--sign-overlay);
+  --color-sign-overlay-foreground: var(--sign-overlay-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);

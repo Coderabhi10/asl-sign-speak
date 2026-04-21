@@ -24,7 +24,7 @@ function SignIllustration({ sign }: { sign: SignGuide }) {
   }
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-3 text-center text-slate-900">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-3 text-center text-sign-foreground">
       <Hand className="h-16 w-16 stroke-[1.75]" />
       <span className="text-4xl font-black leading-none">{sign.letter.slice(0, 3)}</span>
     </div>
@@ -34,9 +34,9 @@ function SignIllustration({ sign }: { sign: SignGuide }) {
 function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => void }) {
   return (
     <Card className="group flex flex-col gap-3 border-border/50 bg-card/60 p-4 shadow-card backdrop-blur transition-smooth hover:border-primary/40 hover:shadow-glow">
-      <div className="relative flex h-44 items-center justify-center overflow-hidden rounded-xl bg-white ring-1 ring-border/40">
+      <div className="relative flex h-44 items-center justify-center overflow-hidden rounded-xl bg-sign-surface ring-1 ring-border/40">
         <SignIllustration sign={sign} />
-        <span className="absolute left-2 top-2 rounded-md bg-slate-900/80 px-2 py-0.5 text-xs font-bold text-white backdrop-blur">
+        <span className="absolute left-2 top-2 rounded-md bg-sign-overlay px-2 py-0.5 text-xs font-bold text-sign-overlay-foreground backdrop-blur">
           {sign.letter}
         </span>
         {sign.motion && (
@@ -50,7 +50,7 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
         <Button
           size="icon"
           variant="ghost"
-          className="absolute bottom-1 right-1 h-8 w-8 bg-slate-900/55 text-white opacity-90 backdrop-blur transition-smooth hover:bg-slate-900/75 hover:text-white"
+          className="absolute bottom-1 right-1 h-8 w-8 bg-sign-overlay text-sign-overlay-foreground opacity-90 backdrop-blur transition-smooth hover:bg-sign-overlay/80 hover:text-sign-overlay-foreground"
           onClick={() => onSpeak(sign.letter.replace(/_/g, " "))}
           aria-label={`Speak ${sign.letter}`}
         >
