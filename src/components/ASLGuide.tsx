@@ -11,13 +11,13 @@ import { Search, Volume2, BookOpen, Hand } from "lucide-react";
 function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => void }) {
   return (
     <Card className="group flex flex-col gap-3 border-border/50 bg-card/60 p-4 shadow-card backdrop-blur transition-smooth hover:border-primary/40 hover:shadow-glow">
-      <div className="relative flex h-36 items-center justify-center overflow-hidden rounded-xl bg-gradient-to-br from-primary/10 via-background to-accent/10 ring-1 ring-border/40">
+      <div className="relative flex h-36 items-center justify-center overflow-hidden rounded-xl bg-white ring-1 ring-border/40">
         {sign.imageUrl ? (
           <img
             src={sign.imageUrl}
             alt={`ASL hand sign for ${sign.letter}`}
             loading="lazy"
-            className="h-full w-full object-contain p-2 mix-blend-luminosity opacity-90 transition-smooth group-hover:opacity-100 group-hover:mix-blend-normal"
+            className="h-full w-full object-contain p-2"
           />
         ) : (
           <div className="flex h-full w-full flex-col items-center justify-center gap-2 text-center">
