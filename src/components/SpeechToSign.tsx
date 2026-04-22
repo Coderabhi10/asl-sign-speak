@@ -93,9 +93,13 @@ function tokenizeForSigning(input: string): SignToken[] {
   return tokens;
 }
 
+type PlayableToken = Exclude<SignToken, { kind: "unknown" }>;
+
 // Filtered list of tokens we actually animate through (signs + spaces only).
-function getPlayableTokens(tokens: SignToken[]): SignToken[] {
-  return tokens.filter((t) => t.kind === "sign" || t.kind === "space");
+function getPlayableTokens(tokens: SignToken[]): PlayableToken[] {
+  return tokens.filter(
+    (t): t is PlayableToken => t.kind === "sign" || t.kind === "space",
+  );
 }
 
 // Minimal type for the Web Speech Recognition API since TS lib doesn't include it.
