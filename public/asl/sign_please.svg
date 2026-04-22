@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">ASL please illustration</title>
+  <desc id="desc">Open hand with a circular motion arrow.</desc>
+  <rect width="512" height="512" fill="#ffffff"/>
+  <g fill="none" stroke="#111827" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="182" y="176" width="142" height="174" rx="48"/>
+    <rect x="186" y="82" width="26" height="116" rx="13"/>
+    <rect x="220" y="70" width="26" height="128" rx="13"/>
+    <rect x="254" y="76" width="26" height="122" rx="13"/>
+    <rect x="288" y="94" width="26" height="104" rx="13"/>
+    <path d="M183 298c-46-24-66-58-57-98 9-38 48-46 72-18"/>
+    <path d="M364 202c34 18 55 56 45 98-10 44-48 76-94 78"/>
+    <path d="M303 374l12 24 18-22"/>
+  </g>
+</svg>

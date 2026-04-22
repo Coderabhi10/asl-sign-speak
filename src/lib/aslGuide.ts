@@ -174,34 +174,40 @@ export const COMMON_PHRASES: SignGuide[] = [
     shape:
       "Open flat hand at your forehead (like a salute), then move it outward away from your face.",
     motion: true,
+    imageUrl: "/asl/sign_hello.svg",
   },
   {
     letter: "THANK YOU",
     shape:
       "Flat hand touches your chin, then moves forward and down toward the other person.",
     motion: true,
+    imageUrl: "/asl/sign_thank_you.svg",
   },
   {
     letter: "YES",
     shape:
       "Closed fist (S sign) nodding up and down, like a head nodding yes.",
     motion: true,
+    imageUrl: "/asl/sign_yes.png",
   },
   {
     letter: "NO",
     shape:
       "Index and middle fingers tap down onto the thumb (like a snapping mouth closing).",
     motion: true,
+    imageUrl: "/asl/sign_no.svg",
   },
   {
     letter: "PLEASE",
     shape: "Flat open palm on your chest, moved in a small circle.",
     motion: true,
+    imageUrl: "/asl/sign_please.svg",
   },
   {
     letter: "SORRY",
     shape: "Closed fist (A sign) on your chest, moved in a small circle.",
     motion: true,
+    imageUrl: "/asl/sign_sorry.png",
   },
   {
     letter: "I LOVE YOU",
@@ -214,18 +220,21 @@ export const COMMON_PHRASES: SignGuide[] = [
     shape:
       "Closed fist (thumb up) resting on top of your other flat palm, then lift both hands together.",
     motion: true,
+    imageUrl: "/asl/sign_help.png",
   },
   {
     letter: "WATER",
     shape:
       "Make a W with three fingers and tap the side of your index finger to your chin.",
     motion: true,
+    imageUrl: "/asl/sign_water.svg",
   },
   {
     letter: "EAT / FOOD",
     shape:
       "Pinch fingertips together (like holding food) and tap them to your mouth.",
     motion: true,
+    imageUrl: "/asl/sign_eat_food.png",
   },
   {
     letter: "GOOD",
