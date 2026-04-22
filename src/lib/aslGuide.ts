@@ -250,4 +250,184 @@ export const COMMON_PHRASES: SignGuide[] = [
     shape:
       "Open hand with all 5 fingers spread — used here to finalize and speak the current word.",
   },
+  {
+    letter: "LOVE",
+    shape:
+      "Cross both arms over your chest, fists closed, like hugging yourself.",
+    motion: true,
+  },
+  {
+    letter: "FRIEND",
+    shape:
+      "Hook both index fingers together, then flip and hook them the other way.",
+    motion: true,
+  },
+  {
+    letter: "FAMILY",
+    shape:
+      "Make F sign with both hands (index + thumb circle), touch thumbs together, then arc them outward into a circle until pinkies touch.",
+    motion: true,
+  },
+  {
+    letter: "HAPPY",
+    shape:
+      "Flat open hands brush upward on your chest in circular motions.",
+    motion: true,
+  },
+  {
+    letter: "SAD",
+    shape:
+      "Open hands in front of your face, fingers spread, slowly slide them downward while making a sad expression.",
+    motion: true,
+  },
+  {
+    letter: "MOTHER",
+    shape:
+      "Open hand with fingers spread, tap your thumb to your chin.",
+    motion: true,
+  },
+  {
+    letter: "FATHER",
+    shape:
+      "Open hand with fingers spread, tap your thumb to your forehead.",
+    motion: true,
+  },
+  {
+    letter: "HOME",
+    shape:
+      "Pinch fingertips together, touch the side of your mouth, then move and touch your cheek.",
+    motion: true,
+  },
+  {
+    letter: "WORK",
+    shape:
+      "Two closed fists (S sign), tap the wrist of your dominant hand on top of the other a couple times.",
+    motion: true,
+  },
+  {
+    letter: "SCHOOL",
+    shape:
+      "Flat hands, clap your dominant palm down onto your other palm twice (like a teacher clapping for attention).",
+    motion: true,
+  },
+  {
+    letter: "MORE",
+    shape:
+      "Pinch fingertips of both hands together (flat-O shape), then tap fingertips together twice.",
+    motion: true,
+  },
+  {
+    letter: "STOP",
+    shape:
+      "Edge of your dominant flat hand chops down sharply onto the palm of your other flat hand.",
+    motion: true,
+  },
+  {
+    letter: "GO",
+    shape:
+      "Both index fingers pointing up, then swing them forward together in the direction you mean.",
+    motion: true,
+  },
+  {
+    letter: "WANT",
+    shape:
+      "Both open hands palms up in front of you, curl fingers and pull hands toward your body.",
+    motion: true,
+  },
+  {
+    letter: "NEED",
+    shape:
+      "Make X sign (bent index finger) and move it firmly downward a couple times.",
+    motion: true,
+  },
+  {
+    letter: "UNDERSTAND",
+    shape:
+      "Closed fist near your forehead, then flick the index finger up (like a lightbulb turning on).",
+    motion: true,
+  },
+  {
+    letter: "WHAT",
+    shape:
+      "Both palms up, fingers relaxed, shake hands slightly side to side with a questioning expression.",
+    motion: true,
+  },
+  {
+    letter: "WHERE",
+    shape:
+      "Index finger pointing up, shake it side to side quickly.",
+    motion: true,
+  },
+  {
+    letter: "WHO",
+    shape:
+      "Make L sign at your chin, then bend the index finger up and down (or circle thumb at chin).",
+    motion: true,
+  },
+  {
+    letter: "HOW",
+    shape:
+      "Bent fingers of both hands touching back-to-back at the knuckles, then roll them forward so palms face up.",
+    motion: true,
+  },
+  {
+    letter: "NICE TO MEET YOU",
+    shape:
+      "Sign NICE (flat hand wipes across other flat palm), then MEET (two index fingers up, bring them together to 'meet').",
+    motion: true,
+  },
+  {
+    letter: "SEE YOU LATER",
+    shape:
+      "V sign at your eyes pointing forward (SEE), then L sign twisting forward at the wrist (LATER).",
+    motion: true,
+  },
+  {
+    letter: "BATHROOM",
+    shape:
+      "Make T sign (fist with thumb between index and middle), shake it side to side.",
+    motion: true,
+  },
+  {
+    letter: "SLEEP",
+    shape:
+      "Open hand in front of your face, slowly close fingers as you draw the hand down past your eyes (eyes closing).",
+    motion: true,
+  },
+  {
+    letter: "HUNGRY",
+    shape:
+      "C sign (curved hand) at your chest, slide it downward from your throat to your stomach.",
+    motion: true,
+  },
+  {
+    letter: "DRINK",
+    shape:
+      "C sign (curved hand) brought up to your mouth like holding a cup and sipping.",
+    motion: true,
+  },
+  {
+    letter: "HOT",
+    shape:
+      "Claw-shape hand in front of your mouth, then quickly twist and throw it away (like spitting out something hot).",
+    motion: true,
+  },
+  {
+    letter: "COLD",
+    shape:
+      "Both fists (S sign) shake in front of your body, like shivering.",
+    motion: true,
+  },
+  {
+    letter: "FRIEND REQUEST / HUG",
+    shape:
+      "Cross both arms over your chest and gently squeeze, like giving yourself a hug.",
+    motion: true,
+  },
+  {
+    letter: "BEAUTIFUL",
+    shape:
+      "Open 5-hand circles in front of your face, then closes into a flat-O at your chin.",
+    motion: true,
+  },
 ];
