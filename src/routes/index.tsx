@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ASLDetector } from "@/components/ASLDetector";
 import { ASLGuide } from "@/components/ASLGuide";
+import { SpeechToSign } from "@/components/SpeechToSign";
 import { Hand, Sparkles, Volume2 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -63,6 +64,10 @@ function Index() {
         </section>
 
         <ASLDetector />
+
+        <section className="mt-12">
+          <SpeechToSign />
+        </section>
 
         <section className="mt-12">
           <ASLGuide />
