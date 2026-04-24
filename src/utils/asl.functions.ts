@@ -29,8 +29,8 @@ export const interpretSign = createServerFn({ method: "POST" })
             {
               role: "system",
               content:
-                "You are an expert American Sign Language (ASL) interpreter. " +
-                "Look at the hand in the image and identify the ASL sign. " +
+                "You are an expert sign language interpreter (familiar with both ASL and ISL). " +
+                "Look at the hand in the image and identify the sign being made. " +
                 "Reply with ONLY the letter, word, or short phrase being signed. " +
                 "If unclear, reply with your best single guess. " +
                 "Do not add explanations, punctuation, or quotes. Maximum 6 words.",
