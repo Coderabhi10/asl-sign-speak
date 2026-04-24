@@ -169,7 +169,8 @@ export function ASLGuide() {
       </Tabs>
 
       <p className="mt-5 rounded-lg border border-border/40 bg-muted/30 p-3 text-xs text-muted-foreground">
-        💡 Tip: Tap the speaker icon on any card to hear the word aloud while you
+        💡 Tip: <strong className="text-foreground">Hover any motion card</strong> to watch the
+        hand movement loop in place, and tap the speaker icon to hear the word aloud while you
         practice the handshape. Signs marked <Badge variant="secondary" className="mx-1 text-[10px]">motion</Badge>
         require movement and won't be detected by the static letter classifier.
       </p>
