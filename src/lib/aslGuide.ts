@@ -170,6 +170,8 @@ export const ASL_ALPHABET: SignGuide[] = [
   },
 ];
 
+const anim = (name: string) => `/asl/anim/${name}.svg`;
+
 export const COMMON_PHRASES: SignGuide[] = [
   {
     letter: "HELLO",
@@ -177,6 +179,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Open flat hand at your forehead (like a salute), then move it outward away from your face.",
     motion: true,
     imageUrl: "/asl/sign_hello.svg",
+    animUrl: anim("sign_hello"),
   },
   {
     letter: "THANK YOU",
@@ -184,6 +187,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Flat hand touches your chin, then moves forward and down toward the other person.",
     motion: true,
     imageUrl: "/asl/sign_thank_you.svg",
+    animUrl: anim("sign_thank_you"),
   },
   {
     letter: "YES",
@@ -191,6 +195,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Closed fist (S sign) nodding up and down, like a head nodding yes.",
     motion: true,
     imageUrl: "/asl/sign_yes.png",
+    animUrl: anim("sign_yes"),
   },
   {
     letter: "NO",
@@ -198,24 +203,28 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Index and middle fingers tap down onto the thumb (like a snapping mouth closing).",
     motion: true,
     imageUrl: "/asl/sign_no.svg",
+    animUrl: anim("sign_no"),
   },
   {
     letter: "PLEASE",
     shape: "Flat open palm on your chest, moved in a small circle.",
     motion: true,
     imageUrl: "/asl/sign_please.svg",
+    animUrl: anim("sign_please"),
   },
   {
     letter: "SORRY",
     shape: "Closed fist (A sign) on your chest, moved in a small circle.",
     motion: true,
     imageUrl: "/asl/sign_sorry.png",
+    animUrl: anim("sign_sorry"),
   },
   {
     letter: "I LOVE YOU",
     shape:
       "Thumb, index, and pinky extended; middle and ring folded down. Palm faces forward.",
-    imageUrl: wm("c/c1/ILY_handsign.svg"),
+    imageUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/c/c1/ILY_handsign.svg",
   },
   {
     letter: "HELP",
@@ -223,6 +232,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Closed fist (thumb up) resting on top of your other flat palm, then lift both hands together.",
     motion: true,
     imageUrl: "/asl/sign_help.png",
+    animUrl: anim("sign_help"),
   },
   {
     letter: "WATER",
@@ -230,6 +240,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Make a W with three fingers and tap the side of your index finger to your chin.",
     motion: true,
     imageUrl: "/asl/sign_water.svg",
+    animUrl: anim("sign_water"),
   },
   {
     letter: "EAT / FOOD",
@@ -237,18 +248,21 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Pinch fingertips together (like holding food) and tap them to your mouth.",
     motion: true,
     imageUrl: "/asl/sign_eat_food.png",
+    animUrl: anim("sign_eat_food"),
   },
   {
     letter: "GOOD",
     shape:
       "Flat hand touches your chin, then drops down onto your other open palm.",
     motion: true,
+    animUrl: anim("sign_thank_you"),
   },
   {
     letter: "BAD",
     shape:
       "Flat hand touches your chin, then flips palm down and moves away.",
     motion: true,
+    animUrl: anim("sign_thank_you"),
   },
   {
     letter: "NAME",
@@ -267,6 +281,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Cross both arms over your chest, fists closed, like hugging yourself.",
     motion: true,
     imageUrl: "/asl/sign_love.png",
+    animUrl: anim("sign_love"),
   },
   {
     letter: "FRIEND",
@@ -274,6 +289,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Hook both index fingers together, then flip and hook them the other way.",
     motion: true,
     imageUrl: "/asl/sign_friend.png",
+    animUrl: anim("sign_friend"),
   },
   {
     letter: "FAMILY",
@@ -281,6 +297,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Make F sign with both hands (index + thumb circle), touch thumbs together, then arc them outward into a circle until pinkies touch.",
     motion: true,
     imageUrl: "/asl/sign_family.png",
+    animUrl: anim("sign_family"),
   },
   {
     letter: "HAPPY",
@@ -288,6 +305,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Flat open hands brush upward on your chest in circular motions.",
     motion: true,
     imageUrl: "/asl/sign_happy.png",
+    animUrl: anim("sign_happy"),
   },
   {
     letter: "SAD",
@@ -295,12 +313,14 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Open hands in front of your face, fingers spread, slowly slide them downward while making a sad expression.",
     motion: true,
     imageUrl: "/asl/sign_sad.png",
+    animUrl: anim("sign_sad"),
   },
   {
     letter: "MOTHER",
     shape:
       "Open hand with fingers spread, tap your thumb to your chin.",
     motion: true,
+    animUrl: anim("sign_mother"),
   },
   {
     letter: "FATHER",
@@ -308,6 +328,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Open hand with fingers spread, tap your thumb to your forehead.",
     motion: true,
     imageUrl: "/asl/sign_father.png",
+    animUrl: anim("sign_father"),
   },
   {
     letter: "HOME",
@@ -315,6 +336,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Pinch fingertips together, touch the side of your mouth, then move and touch your cheek.",
     motion: true,
     imageUrl: "/asl/sign_home.png",
+    animUrl: anim("sign_home"),
   },
   {
     letter: "WORK",
@@ -322,6 +344,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Two closed fists (S sign), tap the wrist of your dominant hand on top of the other a couple times.",
     motion: true,
     imageUrl: "/asl/sign_work.png",
+    animUrl: anim("sign_work"),
   },
   {
     letter: "SCHOOL",
@@ -329,6 +352,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Flat hands, clap your dominant palm down onto your other palm twice (like a teacher clapping for attention).",
     motion: true,
     imageUrl: "/asl/sign_school.png",
+    animUrl: anim("sign_school"),
   },
   {
     letter: "MORE",
@@ -336,6 +360,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Pinch fingertips of both hands together (flat-O shape), then tap fingertips together twice.",
     motion: true,
     imageUrl: "/asl/sign_more.png",
+    animUrl: anim("sign_more"),
   },
   {
     letter: "STOP",
@@ -343,6 +368,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Edge of your dominant flat hand chops down sharply onto the palm of your other flat hand.",
     motion: true,
     imageUrl: "/asl/sign_stop.png",
+    animUrl: anim("sign_stop"),
   },
   {
     letter: "GO",
@@ -350,6 +376,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Both index fingers pointing up, then swing them forward together in the direction you mean.",
     motion: true,
     imageUrl: "/asl/sign_go.png",
+    animUrl: anim("sign_go"),
   },
   {
     letter: "WANT",
@@ -357,6 +384,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Both open hands palms up in front of you, curl fingers and pull hands toward your body.",
     motion: true,
     imageUrl: "/asl/sign_want.png",
+    animUrl: anim("sign_want"),
   },
   {
     letter: "NEED",
@@ -364,6 +392,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Make X sign (bent index finger) and move it firmly downward a couple times.",
     motion: true,
     imageUrl: "/asl/sign_need.png",
+    animUrl: anim("sign_need"),
   },
   {
     letter: "UNDERSTAND",
@@ -371,6 +400,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Closed fist near your forehead, then flick the index finger up (like a lightbulb turning on).",
     motion: true,
     imageUrl: "/asl/sign_understand.png",
+    animUrl: anim("sign_understand"),
   },
   {
     letter: "WHAT",
@@ -378,6 +408,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Both palms up, fingers relaxed, shake hands slightly side to side with a questioning expression.",
     motion: true,
     imageUrl: "/asl/sign_what.png",
+    animUrl: anim("sign_what"),
   },
   {
     letter: "WHERE",
@@ -385,6 +416,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Index finger pointing up, shake it side to side quickly.",
     motion: true,
     imageUrl: "/asl/sign_where.png",
+    animUrl: anim("sign_where"),
   },
   {
     letter: "WHO",
@@ -392,6 +424,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Make L sign at your chin, then bend the index finger up and down (or circle thumb at chin).",
     motion: true,
     imageUrl: "/asl/sign_who.png",
+    animUrl: anim("sign_who"),
   },
   {
     letter: "HOW",
@@ -399,30 +432,35 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Bent fingers of both hands touching back-to-back at the knuckles, then roll them forward so palms face up.",
     motion: true,
     imageUrl: "/asl/sign_how.png",
+    animUrl: anim("sign_how"),
   },
   {
     letter: "NICE TO MEET YOU",
     shape:
       "Sign NICE (flat hand wipes across other flat palm), then MEET (two index fingers up, bring them together to 'meet').",
     motion: true,
+    animUrl: anim("sign_friend"),
   },
   {
     letter: "SEE YOU LATER",
     shape:
       "V sign at your eyes pointing forward (SEE), then L sign twisting forward at the wrist (LATER).",
     motion: true,
+    animUrl: anim("sign_hello"),
   },
   {
     letter: "BATHROOM",
     shape:
       "Make T sign (fist with thumb between index and middle), shake it side to side.",
     motion: true,
+    animUrl: anim("sign_where"),
   },
   {
     letter: "SLEEP",
     shape:
       "Open hand in front of your face, slowly close fingers as you draw the hand down past your eyes (eyes closing).",
     motion: true,
+    animUrl: anim("sign_sad"),
   },
   {
     letter: "HUNGRY",
@@ -430,6 +468,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "C sign (curved hand) at your chest, slide it downward from your throat to your stomach.",
     motion: true,
     imageUrl: "/asl/sign_hungry.png",
+    animUrl: anim("sign_hungry"),
   },
   {
     letter: "DRINK",
@@ -437,6 +476,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "C sign (curved hand) brought up to your mouth like holding a cup and sipping.",
     motion: true,
     imageUrl: "/asl/sign_drink.png",
+    animUrl: anim("sign_drink"),
   },
   {
     letter: "HOT",
@@ -444,6 +484,7 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Claw-shape hand in front of your mouth, then quickly twist and throw it away (like spitting out something hot).",
     motion: true,
     imageUrl: "/asl/sign_hot.png",
+    animUrl: anim("sign_hot"),
   },
   {
     letter: "COLD",
@@ -451,13 +492,15 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Both fists (S sign) shake in front of your body, like shivering.",
     motion: true,
     imageUrl: "/asl/sign_cold.png",
+    animUrl: anim("sign_cold"),
   },
   {
-    letter: "FRIEND REQUEST / HUG",
+    letter: "HUG",
     shape:
       "Cross both arms over your chest and gently squeeze, like giving yourself a hug.",
     motion: true,
     imageUrl: "/asl/sign_love.png",
+    animUrl: anim("sign_love"),
   },
   {
     letter: "BEAUTIFUL",
@@ -465,5 +508,14 @@ export const COMMON_PHRASES: SignGuide[] = [
       "Open 5-hand circles in front of your face, then closes into a flat-O at your chin.",
     motion: true,
     imageUrl: "/asl/sign_beautiful.png",
+    animUrl: anim("sign_beautiful"),
+  },
+  // Indian-flavored greeting — culturally common everyday sign
+  {
+    letter: "NAMASTE 🇮🇳",
+    shape:
+      "Press both palms flat together in front of your chest (prayer position) and bow your head slightly. The traditional Indian greeting — widely used in Indian Sign Language too.",
+    motion: true,
+    animUrl: anim("sign_please"),
   },
 ];
