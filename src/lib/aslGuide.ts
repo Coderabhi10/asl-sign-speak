@@ -1,9 +1,9 @@
-// Plain-language descriptions of how to form each ASL fingerspelling letter.
+// Plain-language descriptions of how to form each Sign Language fingerspelling letter.
 // Aimed at hearing users who want to sign back to a deaf/mute person.
 //
-// Images are sourced from Wikimedia Commons (public domain, by user "Ds13"),
-// the canonical ASL alphabet illustration set used by educational sites.
-// https://commons.wikimedia.org/wiki/Category:Hand_signs_of_letters_in_American_Sign_Language
+// Letter illustrations are sourced from Wikimedia Commons (public domain).
+// Phrase animations are custom-built SMIL SVGs in /public/asl/anim/ that
+// loop the hand motion so users can learn from a moving demo on hover.
 
 export type SignGuide = {
   letter: string;
@@ -11,6 +11,8 @@ export type SignGuide = {
   tip?: string;
   motion?: boolean;
   imageUrl?: string;
+  /** Optional looping animated SVG/GIF that plays on hover to show the motion. */
+  animUrl?: string;
 };
 
 // Use direct file URLs (not /thumb/) — SVGs render natively in <img> at any size
