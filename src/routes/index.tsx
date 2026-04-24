@@ -8,17 +8,17 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "SignSpeak — Real-time ASL detection with voice" },
+      { title: "SignSpeak 🇮🇳 — Real-time Sign Language detection with voice" },
       {
         name: "description",
         content:
-          "Detect American Sign Language hand gestures from your webcam in real time and hear them spoken aloud, powered by MediaPipe and AI.",
+          "Detect sign language hand gestures from your webcam in real time and hear them spoken aloud. Includes everyday Indian phrases like Namaste.",
       },
-      { property: "og:title", content: "SignSpeak — Real-time ASL detection" },
+      { property: "og:title", content: "SignSpeak — Real-time Sign Language detection" },
       {
         property: "og:description",
         content:
-          "Use your webcam to fingerspell ASL letters and have them read aloud instantly.",
+          "Use your webcam to fingerspell letters and have them read aloud instantly — with hover-to-play motion guides for common phrases.",
       },
     ],
   }),
