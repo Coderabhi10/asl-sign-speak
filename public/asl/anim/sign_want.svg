@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 240" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+<defs>
+  <linearGradient id="skinG" x1="0" x2="0" y1="0" y2="1">
+    <stop offset="0" stop-color="#f5d0b0"/>
+    <stop offset="1" stop-color="#d9a878"/>
+  </linearGradient>
+  
+</defs>
+<rect width="100%" height="100%" fill="#0b1220"/>
+
+<g opacity="0.7">
+  <ellipse cx="160" cy="200" rx="90" ry="35" fill="#1e293b" stroke="#334155"/>
+  <text x="160" y="206" text-anchor="middle" fill="#94a3b8" font-size="12">body</text>
+</g>
+<g transform="translate(110 90)">
+  <g>
+    <g transform="rotate(-90) scale(0.7)"><ellipse cx="-30" cy="14" rx="10" ry="16" fill="url(#skinG)" stroke="#d9a878" stroke-width="1.5" transform="rotate(-25 -30 14)"/><rect x="-26" y="-10" width="52" height="60" rx="18" fill="url(#skinG)" stroke="#d9a878" stroke-width="1.5"/><rect x="-20" y="-30" width="9" height="22" rx="5" fill="url(#skinG)" stroke="#d9a878" stroke-width="1.2" transform="rotate(-20 -15.5 -8)"/><rect x="-9" y="-30" width="9" height="22" rx="5" fill="url(#skinG)" stroke="#d9a878" stroke-width="1.2" transform="rotate(-15 -4.5 -8)"/><rect x="2" y="-30" width="9" height="22" rx="5" fill="url(#skinG)" stroke="#d9a878" stroke-width="1.2" transform="rotate(-10 6.5 -8)"/><rect x="13" y="-30" width="9" height="22" rx="5" fill="url(#skinG)" stroke="#d9a878" stroke-width="1.2" transform="rotate(-5 17.5 -8)"/></g>
+    <animateTransform attributeName="transform" type="translate"
+      values="0,0; 30,80; 0,0" dur="1.8s" repeatCount="indefinite"/>
+  </g>
+</g>
+<g transform="translate(210 90)">
+  <g>
+    <g transform="rotate(-90) scale(0.7)"><ellipse cx="-30" cy="14" rx="10" ry="16" fill="url(#skinG)" stroke="#d9a878" stroke-width="1.5" transform="rotate(-25 -30 14)"/><rect x="-26" y="-10" width="52" height="60" rx="18" fill="url(#skinG)" stroke="#d9a878" stroke-width="1.5"/><rect x="-20" y="-30" width="9" height="22" rx="5" fill="url(#skinG)" stroke="#d9a878" stroke-width="1.2" transform="rotate(-20 -15.5 -8)"/><rect x="-9" y="-30" width="9" height="22" rx="5" fill="url(#skinG)" stroke="#d9a878" stroke-width="1.2" transform="rotate(-15 -4.5 -8)"/><rect x="2" y="-30" width="9" height="22" rx="5" fill="url(#skinG)" stroke="#d9a878" stroke-width="1.2" transform="rotate(-10 6.5 -8)"/><rect x="13" y="-30" width="9" height="22" rx="5" fill="url(#skinG)" stroke="#d9a878" stroke-width="1.2" transform="rotate(-5 17.5 -8)"/></g>
+    <animateTransform attributeName="transform" type="translate"
+      values="0,0; -30,80; 0,0" dur="1.8s" repeatCount="indefinite"/>
+  </g>
+</g>
+
+</svg>

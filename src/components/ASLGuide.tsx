@@ -8,17 +8,36 @@ import { useSpeech } from "@/hooks/useSpeech";
 import { ASL_ALPHABET, COMMON_PHRASES, type SignGuide } from "@/lib/aslGuide";
 import { Search, Volume2, BookOpen, Hand } from "lucide-react";
 
-function SignIllustration({ sign }: { sign: SignGuide }) {
-  const [failed, setFailed] = useState(false);
+function SignIllustration({ sign, hovered }: { sign: SignGuide; hovered: boolean }) {
+  const [stillFailed, setStillFailed] = useState(false);
+  const [animFailed, setAnimFailed] = useState(false);
 
-  if (sign.imageUrl && !failed) {
+  // Prefer animated SVG when hovered; fall back to still image; fall back to icon.
+  const showAnim = hovered && sign.animUrl && !animFailed;
+  const showStill = !showAnim && sign.imageUrl && !stillFailed;
+  const showAnimAsDefault = !showStill && sign.animUrl && !animFailed;
+
+  if (showAnim || showAnimAsDefault) {
+    return (
+      <img
+        key={sign.animUrl}
+        src={sign.animUrl}
+        alt={`Animated demo of the sign for ${sign.letter}`}
+        loading="lazy"
+        className="h-full w-full object-contain"
+        onError={() => setAnimFailed(true)}
+      />
+    );
+  }
+
+  if (showStill) {
     return (
       <img
         src={sign.imageUrl}
-        alt={`ASL hand sign for ${sign.letter}`}
+        alt={`Hand sign for ${sign.letter}`}
         loading="lazy"
         className="h-full w-full object-contain p-3"
-        onError={() => setFailed(true)}
+        onError={() => setStillFailed(true)}
       />
     );
   }
@@ -32,10 +51,17 @@ function SignIllustration({ sign }: { sign: SignGuide }) {
 }
 
 function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => void }) {
+  const [hovered, setHovered] = useState(false);
   return (
-    <Card className="group flex flex-col gap-3 border-border/50 bg-card/60 p-4 shadow-card backdrop-blur transition-smooth hover:border-primary/40 hover:shadow-glow">
+    <Card
+      className="group flex flex-col gap-3 border-border/50 bg-card/60 p-4 shadow-card backdrop-blur transition-smooth hover:border-primary/40 hover:shadow-glow"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setHovered(true)}
+      onBlur={() => setHovered(false)}
+    >
       <div className="relative flex h-44 items-center justify-center overflow-hidden rounded-xl bg-sign-surface ring-1 ring-border/40">
-        <SignIllustration sign={sign} />
+        <SignIllustration sign={sign} hovered={hovered} />
         <span className="absolute left-2 top-2 rounded-md bg-sign-overlay px-2 py-0.5 text-xs font-bold text-sign-overlay-foreground backdrop-blur">
           {sign.letter}
         </span>
@@ -44,7 +70,7 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
             variant="secondary"
             className="absolute right-2 top-2 text-[10px]"
           >
-            motion
+            {hovered && sign.animUrl ? "▶ playing" : "motion"}
           </Badge>
         )}
         <Button
@@ -143,7 +169,8 @@ export function ASLGuide() {
       </Tabs>
 
       <p className="mt-5 rounded-lg border border-border/40 bg-muted/30 p-3 text-xs text-muted-foreground">
-        💡 Tip: Tap the speaker icon on any card to hear the word aloud while you
+        💡 Tip: <strong className="text-foreground">Hover any motion card</strong> to watch the
+        hand movement loop in place, and tap the speaker icon to hear the word aloud while you
         practice the handshape. Signs marked <Badge variant="secondary" className="mx-1 text-[10px]">motion</Badge>
         require movement and won't be detected by the static letter classifier.
       </p>

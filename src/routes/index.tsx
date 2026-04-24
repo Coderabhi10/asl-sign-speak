@@ -8,17 +8,17 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "SignSpeak — Real-time ASL detection with voice" },
+      { title: "SignSpeak 🇮🇳 — Real-time Sign Language detection with voice" },
       {
         name: "description",
         content:
-          "Detect American Sign Language hand gestures from your webcam in real time and hear them spoken aloud, powered by MediaPipe and AI.",
+          "Detect sign language hand gestures from your webcam in real time and hear them spoken aloud. Includes everyday Indian phrases like Namaste.",
       },
-      { property: "og:title", content: "SignSpeak — Real-time ASL detection" },
+      { property: "og:title", content: "SignSpeak — Real-time Sign Language detection" },
       {
         property: "og:description",
         content:
-          "Use your webcam to fingerspell ASL letters and have them read aloud instantly.",
+          "Use your webcam to fingerspell letters and have them read aloud instantly — with hover-to-play motion guides for common phrases.",
       },
     ],
   }),
@@ -30,13 +30,22 @@ function Index() {
       <header className="border-b border-border/40 backdrop-blur-sm">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-primary shadow-glow">
+            <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-primary shadow-glow">
               <Hand className="h-5 w-5 text-primary-foreground" />
+              <span
+                className="absolute -bottom-1 -right-1 text-base leading-none drop-shadow"
+                aria-label="India"
+                title="Made with an Indian touch"
+              >
+                🇮🇳
+              </span>
             </div>
             <div>
-              <h1 className="text-lg font-bold text-foreground">SignSpeak</h1>
+              <h1 className="text-lg font-bold text-foreground">
+                SignSpeak <span className="text-base">🇮🇳</span>
+              </h1>
               <p className="text-xs text-muted-foreground">
-                ASL → Text → Voice
+                Sign → Text → Voice · for Bharat & beyond
               </p>
             </div>
           </div>
@@ -48,6 +57,12 @@ function Index() {
             <span>Powered by MediaPipe + AI</span>
           </div>
         </div>
+        {/* Indian tricolor accent strip */}
+        <div className="flex h-1 w-full">
+          <div className="flex-1 bg-[#FF9933]" />
+          <div className="flex-1 bg-white" />
+          <div className="flex-1 bg-[#138808]" />
+        </div>
       </header>
 
       <main className="mx-auto max-w-6xl px-6 py-10">
@@ -57,9 +72,11 @@ function Index() {
             <span className="text-gradient-primary">Speak with your voice.</span>
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-balance text-muted-foreground">
-            Real-time American Sign Language fingerspelling detection using your
-            webcam. Build words letter-by-letter and hear them announced aloud
-            — or ask the AI to interpret a full sign.
+            Real-time sign language fingerspelling detection using your
+            webcam — with hover-to-play motion guides for everyday phrases like
+            <span className="px-1 font-semibold text-foreground">Namaste 🙏</span>,
+            love, thank you, and more. Build words letter-by-letter and hear them
+            announced aloud, or ask the AI to interpret a full sign.
           </p>
         </section>
 
