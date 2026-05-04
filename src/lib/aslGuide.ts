@@ -9,11 +9,71 @@ export type SignGuide = {
   letter: string;
   shape: string;
   tip?: string;
+  actionSteps?: string[];
   motion?: boolean;
   imageUrl?: string;
   /** Optional looping animated SVG/GIF that plays on hover to show the motion. */
   animUrl?: string;
 };
+
+const DEFAULT_STATIC_STEPS = [
+  "Copy the hand shape shown in the picture.",
+  "Match the palm direction written in the description.",
+  "Hold the sign steady for one second.",
+];
+
+const ACTION_STEPS: Record<string, string[]> = {
+  J: ["Make the I hand shape with your pinky up.", "Move the pinky down and curve it upward like writing J in the air.", "Finish with the palm facing forward."],
+  Z: ["Point your index finger forward.", "Draw a Z shape in the air: across, diagonal down, across.", "Keep the movement sharp and clear."],
+  HELLO: ["Open your flat hand beside your forehead like a salute.", "Keep your palm facing outward.", "Move the hand away from your face in a small wave."],
+  "THANK YOU": ["Place a flat hand at your chin with palm facing in.", "Move the hand forward toward the other person.", "Finish with palm slightly upward, as if sending thanks."],
+  YES: ["Close your hand into a fist.", "Hold it in front of your body.", "Bend the wrist up and down two times like nodding yes."],
+  NO: ["Extend index and middle fingers with thumb open.", "Bring the two fingers down to touch the thumb.", "Repeat once like a small mouth closing."],
+  PLEASE: ["Place a flat open palm on the center of your chest.", "Keep the palm touching your chest.", "Move the hand in a small circle."],
+  SORRY: ["Make a closed fist.", "Place the fist on your chest.", "Move the fist in a small circle."],
+  "I LOVE YOU": ["Open thumb, index finger, and pinky.", "Fold middle and ring fingers down.", "Hold palm forward toward the person."],
+  HELP: ["Put your non-dominant hand flat, palm up.", "Place your dominant fist with thumb up on top of that palm.", "Lift both hands upward together."],
+  WATER: ["Make a W with three fingers.", "Place the index-finger side near your chin.", "Tap the chin two times."],
+  "EAT / FOOD": ["Pinch all fingertips together like holding food.", "Bring the fingertips to your mouth.", "Tap at the mouth once or twice."],
+  GOOD: ["Touch a flat hand to your chin.", "Move that hand forward and down.", "Land it on your other open palm."],
+  BAD: ["Touch a flat hand to your chin.", "Move it forward.", "Flip the palm down as it moves away."],
+  NAME: ["Make an H hand shape with both hands.", "Cross the two H hands like an X.", "Tap them together two times."],
+  SPACE: ["Spread all five fingers open.", "Hold the open hand forward.", "Use it as a clear pause or word break."],
+  LOVE: ["Close both hands into fists.", "Cross both arms over your chest.", "Gently squeeze inward like hugging yourself."],
+  FRIEND: ["Hook the index fingers of both hands together.", "Unhook and rotate the hands.", "Hook them again the opposite way."],
+  FAMILY: ["Make F hand shapes with both hands.", "Touch the thumbs and index fingers together in front of you.", "Move both hands outward in a circle until the pinkies meet."],
+  HAPPY: ["Open both hands with palms toward your chest.", "Brush the hands upward on your chest.", "Repeat the upward movement with a happy expression."],
+  SAD: ["Open both hands in front of your face with fingers spread.", "Keep palms facing inward.", "Move both hands slowly downward past the face."],
+  MOTHER: ["Open your hand with fingers spread.", "Bring the thumb to your chin.", "Tap the thumb on the chin."],
+  FATHER: ["Open your hand with fingers spread.", "Bring the thumb to your forehead.", "Tap the thumb on the forehead."],
+  HOME: ["Pinch fingertips together like an O hand.", "Touch the fingertips near the side of your mouth.", "Move them to your cheek and touch again."],
+  WORK: ["Make two closed fists.", "Hold one fist still in front of you.", "Tap the wrist/side of the other fist on it twice."],
+  SCHOOL: ["Hold one flat hand palm up.", "Bring the other flat hand above it.", "Clap the top palm down onto the bottom palm two times."],
+  MORE: ["Pinch fingertips together on both hands.", "Hold both pinched hands in front of you.", "Tap the fingertips together two times."],
+  STOP: ["Hold one hand flat, palm up.", "Make the other hand flat like a blade.", "Chop the blade hand down onto the palm."],
+  GO: ["Point both index fingers upward.", "Aim them in the direction of travel.", "Swing both hands forward together."],
+  WANT: ["Hold both open hands forward with palms up.", "Curl the fingers slightly.", "Pull both hands back toward your body."],
+  NEED: ["Make an X hand shape with a bent index finger.", "Hold it in front of your body.", "Move it downward firmly once or twice."],
+  UNDERSTAND: ["Hold a closed fist near your forehead.", "Keep the hand still for a moment.", "Flick the index finger upward like a light turning on."],
+  WHAT: ["Hold both palms up with relaxed fingers.", "Keep your elbows near your body.", "Shake both hands side to side with a questioning face."],
+  WHERE: ["Point one index finger upward.", "Hold it in front of your body.", "Shake the finger side to side."],
+  WHO: ["Make an L hand shape near your chin.", "Keep the thumb near the chin.", "Bend the index finger up and down."],
+  HOW: ["Bend fingers of both hands and touch the knuckles together.", "Roll both hands forward.", "Finish with palms facing upward."],
+  "NICE TO MEET YOU": ["Wipe one flat hand across the other palm for NICE.", "Raise both index fingers facing each other.", "Move the index fingers together so they meet."],
+  "SEE YOU LATER": ["Make a V sign near your eyes and move it forward for SEE.", "Make an L sign for LATER.", "Twist the L hand forward at the wrist."],
+  BATHROOM: ["Make a T hand shape.", "Hold it in front of your shoulder.", "Shake the T side to side."],
+  SLEEP: ["Open one hand in front of your face.", "Draw the hand downward past your eyes.", "Close the fingers as the hand moves down."],
+  HUNGRY: ["Make a curved C hand near your throat.", "Touch the chest lightly.", "Slide the C hand downward toward your stomach."],
+  DRINK: ["Curve your hand like holding a cup.", "Bring the hand up to your mouth.", "Tilt it slightly like taking a sip."],
+  HOT: ["Make a claw hand in front of your mouth.", "Twist the hand quickly outward.", "Throw it away from your mouth like something is hot."],
+  COLD: ["Make fists with both hands.", "Hold them near your body.", "Shake both fists quickly like shivering."],
+  HUG: ["Close both hands into fists.", "Cross both arms over your chest.", "Gently squeeze inward like a hug."],
+  BEAUTIFUL: ["Open one hand in front of your face with fingers spread.", "Circle the hand around the face.", "Close the fingers together near the chin."],
+  "NAMASTE 🇮🇳": ["Press both palms together in front of your chest.", "Keep fingers pointing upward.", "Bow your head slightly with respect."],
+};
+
+export const getSignActionSteps = (sign: SignGuide) =>
+  sign.actionSteps ?? ACTION_STEPS[sign.letter] ?? DEFAULT_STATIC_STEPS;
 
 // Use direct file URLs (not /thumb/) — SVGs render natively in <img> at any size
 // and the /thumb/ endpoint requires a .png suffix for SVG sources, which broke loading.
