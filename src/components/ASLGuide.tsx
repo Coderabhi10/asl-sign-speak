@@ -286,10 +286,12 @@ export function ASLGuide() {
       </Tabs>
 
       <p className="mt-5 rounded-lg border border-border/40 bg-muted/30 p-3 text-xs text-muted-foreground">
-        💡 Tip: <strong className="text-foreground">Tap any card</strong> to hear the word and
-        play the hand-motion animation. Use the ▶ / ⏸ button to control playback, the speaker
-        icon to repeat the word, and the ↻ button to replay the motion. Signs marked
-        <Badge variant="secondary" className="mx-1 text-[10px]">motion</Badge>
+        💡 Tip: <strong className="text-foreground">Tap any card</strong> to hear the word and play
+        the hand-motion animation. Use the ▶ / ⏸ button to control playback, the speaker icon to
+        repeat the word, and the ↻ button to replay the motion. Signs marked
+        <Badge variant="secondary" className="mx-1 text-[10px]">
+          motion
+        </Badge>
         require movement and won't be detected by the static letter classifier.
       </p>
     </Card>
