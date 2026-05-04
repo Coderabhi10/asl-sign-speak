@@ -5,8 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useSpeech } from "@/hooks/useSpeech";
-import { ASL_ALPHABET, COMMON_PHRASES, type SignGuide } from "@/lib/aslGuide";
-import { Search, Volume2, BookOpen, Hand, Play, Pause, RotateCcw } from "lucide-react";
+import { ASL_ALPHABET, COMMON_PHRASES, getSignActionSteps, type SignGuide } from "@/lib/aslGuide";
+import { Search, Volume2, BookOpen, Hand, Play, Pause, RotateCcw, MoveRight } from "lucide-react";
 
 function SignIllustration({
   sign,
@@ -77,6 +77,7 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
 
   const hasAnim = !!sign.animUrl;
   const label = sign.letter.replace(/_/g, " ");
+  const actionSteps = getSignActionSteps(sign);
 
   useEffect(() => {
     return () => {
@@ -182,7 +183,24 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
           <Volume2 className="h-4 w-4" />
         </Button>
       </div>
-      <p className="text-sm leading-relaxed text-muted-foreground">{sign.shape}</p>
+      <div className="space-y-2">
+        <p className="text-sm leading-relaxed text-muted-foreground">{sign.shape}</p>
+        <div className="rounded-lg border border-border/40 bg-muted/30 p-3">
+          <div className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-foreground">
+            <MoveRight className="h-3.5 w-3.5 text-primary" /> Hand movement
+          </div>
+          <ol className="space-y-1.5 text-xs leading-relaxed text-muted-foreground">
+            {actionSteps.map((step, index) => (
+              <li key={step} className="grid grid-cols-[1.25rem_1fr] gap-2">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
+                  {index + 1}
+                </span>
+                <span>{step}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
     </Card>
   );
 }
