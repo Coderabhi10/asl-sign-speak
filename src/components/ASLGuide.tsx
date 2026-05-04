@@ -5,8 +5,37 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useSpeech } from "@/hooks/useSpeech";
-import { ASL_ALPHABET, COMMON_PHRASES, getSignActionSteps, type SignGuide } from "@/lib/aslGuide";
-import { Search, Volume2, BookOpen, Hand, Play, Pause, RotateCcw, MoveRight } from "lucide-react";
+import {
+  ASL_ALPHABET,
+  COMMON_PHRASES,
+  getSignActionSteps,
+  getSignVideo,
+  getSignSearchUrl,
+  type SignGuide,
+} from "@/lib/aslGuide";
+import {
+  Search,
+  Volume2,
+  BookOpen,
+  Hand,
+  Play,
+  Pause,
+  MoveRight,
+  ExternalLink,
+} from "lucide-react";
+
+function buildYouTubeEmbed(id: string, start?: number, end?: number) {
+  const params = new URLSearchParams({
+    autoplay: "1",
+    rel: "0",
+    modestbranding: "1",
+    playsinline: "1",
+    controls: "1",
+  });
+  if (start) params.set("start", String(Math.floor(start)));
+  if (end) params.set("end", String(Math.floor(end)));
+  return `https://www.youtube-nocookie.com/embed/${id}?${params.toString()}`;
+}
 
 function SignIllustration({
   sign,
@@ -18,26 +47,22 @@ function SignIllustration({
   animKey: number;
 }) {
   const [stillFailed, setStillFailed] = useState(false);
-  const [animFailed, setAnimFailed] = useState(false);
+  const video = getSignVideo(sign);
 
-  const canAnimate = !!sign.animUrl && !animFailed;
-  const canStill = !!sign.imageUrl && !stillFailed;
-
-  // When user presses play, show the animated SVG. Otherwise prefer still image.
-  if (playing && canAnimate) {
+  if (playing && video) {
     return (
-      <img
-        key={`anim-${animKey}`}
-        src={sign.animUrl}
-        alt={`Animated demo of the sign for ${sign.letter}`}
-        loading="lazy"
-        className="h-full w-full object-contain"
-        onError={() => setAnimFailed(true)}
+      <iframe
+        key={`yt-${animKey}-${video.id}`}
+        src={buildYouTubeEmbed(video.id, video.start, video.end)}
+        title={`Video demo of the sign for ${sign.letter}`}
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowFullScreen
+        className="h-full w-full border-0"
       />
     );
   }
 
-  if (canStill) {
+  if (sign.imageUrl && !stillFailed) {
     return (
       <img
         src={sign.imageUrl}
@@ -45,19 +70,6 @@ function SignIllustration({
         loading="lazy"
         className="h-full w-full object-contain p-3"
         onError={() => setStillFailed(true)}
-      />
-    );
-  }
-
-  if (canAnimate) {
-    return (
-      <img
-        key={`anim-default-${animKey}`}
-        src={sign.animUrl}
-        alt={`Animated demo of the sign for ${sign.letter}`}
-        loading="lazy"
-        className="h-full w-full object-contain"
-        onError={() => setAnimFailed(true)}
       />
     );
   }
