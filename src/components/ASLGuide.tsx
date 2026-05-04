@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -6,21 +6,28 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useSpeech } from "@/hooks/useSpeech";
 import { ASL_ALPHABET, COMMON_PHRASES, type SignGuide } from "@/lib/aslGuide";
-import { Search, Volume2, BookOpen, Hand } from "lucide-react";
+import { Search, Volume2, BookOpen, Hand, Play, Pause, RotateCcw } from "lucide-react";
 
-function SignIllustration({ sign, hovered }: { sign: SignGuide; hovered: boolean }) {
+function SignIllustration({
+  sign,
+  playing,
+  animKey,
+}: {
+  sign: SignGuide;
+  playing: boolean;
+  animKey: number;
+}) {
   const [stillFailed, setStillFailed] = useState(false);
   const [animFailed, setAnimFailed] = useState(false);
 
-  // Prefer animated SVG when hovered; fall back to still image; fall back to icon.
-  const showAnim = hovered && sign.animUrl && !animFailed;
-  const showStill = !showAnim && sign.imageUrl && !stillFailed;
-  const showAnimAsDefault = !showStill && sign.animUrl && !animFailed;
+  const canAnimate = !!sign.animUrl && !animFailed;
+  const canStill = !!sign.imageUrl && !stillFailed;
 
-  if (showAnim || showAnimAsDefault) {
+  // When user presses play, show the animated SVG. Otherwise prefer still image.
+  if (playing && canAnimate) {
     return (
       <img
-        key={sign.animUrl}
+        key={`anim-${animKey}`}
         src={sign.animUrl}
         alt={`Animated demo of the sign for ${sign.letter}`}
         loading="lazy"
@@ -30,7 +37,7 @@ function SignIllustration({ sign, hovered }: { sign: SignGuide; hovered: boolean
     );
   }
 
-  if (showStill) {
+  if (canStill) {
     return (
       <img
         src={sign.imageUrl}
@@ -38,6 +45,19 @@ function SignIllustration({ sign, hovered }: { sign: SignGuide; hovered: boolean
         loading="lazy"
         className="h-full w-full object-contain p-3"
         onError={() => setStillFailed(true)}
+      />
+    );
+  }
+
+  if (canAnimate) {
+    return (
+      <img
+        key={`anim-default-${animKey}`}
+        src={sign.animUrl}
+        alt={`Animated demo of the sign for ${sign.letter}`}
+        loading="lazy"
+        className="h-full w-full object-contain"
+        onError={() => setAnimFailed(true)}
       />
     );
   }
@@ -51,33 +71,112 @@ function SignIllustration({ sign, hovered }: { sign: SignGuide; hovered: boolean
 }
 
 function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => void }) {
-  const [hovered, setHovered] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [animKey, setAnimKey] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const hasAnim = !!sign.animUrl;
+  const label = sign.letter.replace(/_/g, " ");
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
+
+  const startPlayback = () => {
+    if (!hasAnim) return;
+    setAnimKey((k) => k + 1);
+    setPlaying(true);
+    if (timerRef.current) clearTimeout(timerRef.current);
+    // Auto-stop after a few loops so the still image returns.
+    timerRef.current = setTimeout(() => setPlaying(false), 6000);
+  };
+
+  const stopPlayback = () => {
+    setPlaying(false);
+    if (timerRef.current) clearTimeout(timerRef.current);
+  };
+
+  const handleCardActivate = () => {
+    // One-tap action: speak + play motion (if any).
+    onSpeak(label);
+    if (hasAnim) {
+      if (playing) stopPlayback();
+      else startPlayback();
+    }
+  };
+
+  const handleCardKey = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      handleCardActivate();
+    }
+  };
+
   return (
     <Card
-      className="group flex flex-col gap-3 border-border/50 bg-card/60 p-4 shadow-card backdrop-blur transition-smooth hover:border-primary/40 hover:shadow-glow"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      onFocus={() => setHovered(true)}
-      onBlur={() => setHovered(false)}
+      role="button"
+      tabIndex={0}
+      onClick={handleCardActivate}
+      onKeyDown={handleCardKey}
+      aria-label={`Play sign for ${label}`}
+      className="group flex cursor-pointer flex-col gap-3 border-border/50 bg-card/60 p-4 shadow-card backdrop-blur transition-smooth hover:border-primary/40 hover:shadow-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
     >
       <div className="relative flex h-44 items-center justify-center overflow-hidden rounded-xl bg-sign-surface ring-1 ring-border/40">
-        <SignIllustration sign={sign} hovered={hovered} />
+        <SignIllustration sign={sign} playing={playing} animKey={animKey} />
         <span className="absolute left-2 top-2 rounded-md bg-sign-overlay px-2 py-0.5 text-xs font-bold text-sign-overlay-foreground backdrop-blur">
           {sign.letter}
         </span>
         {sign.motion && (
           <Badge
-            variant="secondary"
+            variant={playing ? "default" : "secondary"}
             className="absolute right-2 top-2 text-[10px]"
           >
-            {hovered && sign.animUrl ? "▶ playing" : "motion"}
+            {playing ? "▶ playing" : "motion"}
           </Badge>
         )}
+
+        {hasAnim && (
+          <div className="absolute bottom-1 left-1 flex gap-1">
+            <Button
+              size="icon"
+              variant="ghost"
+              className="h-8 w-8 bg-sign-overlay text-sign-overlay-foreground backdrop-blur hover:bg-sign-overlay/80 hover:text-sign-overlay-foreground"
+              onClick={(e) => {
+                e.stopPropagation();
+                if (playing) stopPlayback();
+                else startPlayback();
+              }}
+              aria-label={playing ? `Pause ${label}` : `Play ${label}`}
+            >
+              {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+            </Button>
+            {playing && (
+              <Button
+                size="icon"
+                variant="ghost"
+                className="h-8 w-8 bg-sign-overlay text-sign-overlay-foreground backdrop-blur hover:bg-sign-overlay/80 hover:text-sign-overlay-foreground"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  startPlayback();
+                }}
+                aria-label={`Replay ${label}`}
+              >
+                <RotateCcw className="h-4 w-4" />
+              </Button>
+            )}
+          </div>
+        )}
+
         <Button
           size="icon"
           variant="ghost"
           className="absolute bottom-1 right-1 h-8 w-8 bg-sign-overlay text-sign-overlay-foreground opacity-90 backdrop-blur transition-smooth hover:bg-sign-overlay/80 hover:text-sign-overlay-foreground"
-          onClick={() => onSpeak(sign.letter.replace(/_/g, " "))}
+          onClick={(e) => {
+            e.stopPropagation();
+            onSpeak(label);
+          }}
           aria-label={`Speak ${sign.letter}`}
         >
           <Volume2 className="h-4 w-4" />
