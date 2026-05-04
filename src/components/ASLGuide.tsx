@@ -87,7 +87,9 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
   const [animKey, setAnimKey] = useState(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const hasAnim = !!sign.animUrl;
+  const video = getSignVideo(sign);
+  const hasVideo = !!video;
+  const searchUrl = getSignSearchUrl(sign);
   const label = sign.letter.replace(/_/g, " ");
   const actionSteps = getSignActionSteps(sign);
 
@@ -98,12 +100,10 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
   }, []);
 
   const startPlayback = () => {
-    if (!hasAnim) return;
+    if (!hasVideo) return;
     setAnimKey((k) => k + 1);
     setPlaying(true);
     if (timerRef.current) clearTimeout(timerRef.current);
-    // Auto-stop after a few loops so the still image returns.
-    timerRef.current = setTimeout(() => setPlaying(false), 6000);
   };
 
   const stopPlayback = () => {
@@ -112,9 +112,8 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
   };
 
   const handleCardActivate = () => {
-    // One-tap action: speak + play motion (if any).
     onSpeak(label);
-    if (hasAnim) {
+    if (hasVideo) {
       if (playing) stopPlayback();
       else startPlayback();
     }
@@ -136,21 +135,28 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
       aria-label={`Play sign for ${label}`}
       className="group flex cursor-pointer flex-col gap-3 border-border/50 bg-card/60 p-4 shadow-card backdrop-blur transition-smooth hover:border-primary/40 hover:shadow-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
     >
-      <div className="relative flex h-44 items-center justify-center overflow-hidden rounded-xl bg-sign-surface ring-1 ring-border/40">
+      <div className="relative flex h-48 items-center justify-center overflow-hidden rounded-xl bg-sign-surface ring-1 ring-border/40">
         <SignIllustration sign={sign} playing={playing} animKey={animKey} />
         <span className="absolute left-2 top-2 rounded-md bg-sign-overlay px-2 py-0.5 text-xs font-bold text-sign-overlay-foreground backdrop-blur">
           {sign.letter}
         </span>
-        {sign.motion && (
-          <Badge
-            variant={playing ? "default" : "secondary"}
-            className="absolute right-2 top-2 text-[10px]"
-          >
-            {playing ? "▶ playing" : "motion"}
+        {sign.motion && !playing && (
+          <Badge variant="secondary" className="absolute right-2 top-2 text-[10px]">
+            motion
           </Badge>
         )}
 
-        {hasAnim && (
+        {!playing && (
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 transition-smooth group-hover:bg-black/20">
+            {hasVideo && (
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/90 text-primary-foreground opacity-0 shadow-glow transition-smooth group-hover:opacity-100">
+                <Play className="h-6 w-6 fill-current" />
+              </div>
+            )}
+          </div>
+        )}
+
+        {hasVideo && (
           <div className="absolute bottom-1 left-1 flex gap-1">
             <Button
               size="icon"
@@ -161,24 +167,10 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
                 if (playing) stopPlayback();
                 else startPlayback();
               }}
-              aria-label={playing ? `Pause ${label}` : `Play ${label}`}
+              aria-label={playing ? `Stop video for ${label}` : `Play video for ${label}`}
             >
               {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
             </Button>
-            {playing && (
-              <Button
-                size="icon"
-                variant="ghost"
-                className="h-8 w-8 bg-sign-overlay text-sign-overlay-foreground backdrop-blur hover:bg-sign-overlay/80 hover:text-sign-overlay-foreground"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  startPlayback();
-                }}
-                aria-label={`Replay ${label}`}
-              >
-                <RotateCcw className="h-4 w-4" />
-              </Button>
-            )}
           </div>
         )}
 
@@ -212,6 +204,16 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
             ))}
           </ol>
         </div>
+        <a
+          href={searchUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
+        >
+          <ExternalLink className="h-3 w-3" />
+          {hasVideo ? "More videos on YouTube" : "Watch on YouTube"}
+        </a>
       </div>
     </Card>
   );
