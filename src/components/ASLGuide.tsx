@@ -11,16 +11,7 @@ import {
   getSignActionSteps,
   type SignGuide,
 } from "@/lib/aslGuide";
-import {
-  Search,
-  Volume2,
-  BookOpen,
-  Hand,
-  Play,
-  Pause,
-  RotateCcw,
-  MoveRight,
-} from "lucide-react";
+import { Search, Volume2, BookOpen, Hand, Play, Pause, RotateCcw, MoveRight } from "lucide-react";
 
 function SignIllustration({
   sign,
@@ -286,8 +277,8 @@ export function ASLGuide() {
 
       <p className="mt-5 rounded-lg border border-border/40 bg-muted/30 p-3 text-xs text-muted-foreground">
         💡 Tip: <strong className="text-foreground">Tap any card</strong> to hear the word and play
-        an in-app animated tutorial of the hand motion. Follow the numbered steps below each card
-        to learn how to form the sign yourself.
+        an in-app animated tutorial of the hand motion. Follow the numbered steps below each card to
+        learn how to form the sign yourself.
       </p>
     </Card>
   );
