@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useSpeech } from "@/hooks/useSpeech";
 import {
-  ASL_ALPHABET,
+  ASL_ALPHABET_WITH_TUTORIALS,
   COMMON_PHRASES,
   getSignActionSteps,
   type SignGuide,
@@ -209,9 +209,9 @@ export function ASLGuide() {
   const { speak } = useSpeech();
 
   const filteredAlphabet = useMemo(() => {
-    if (!query.trim()) return ASL_ALPHABET;
+    if (!query.trim()) return ASL_ALPHABET_WITH_TUTORIALS;
     const q = query.toLowerCase();
-    return ASL_ALPHABET.filter(
+    return ASL_ALPHABET_WITH_TUTORIALS.filter(
       (s) => s.letter.toLowerCase().includes(q) || s.shape.toLowerCase().includes(q),
     );
   }, [query]);
