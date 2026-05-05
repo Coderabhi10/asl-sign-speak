@@ -404,6 +404,13 @@ export const ASL_ALPHABET: SignGuide[] = [
 ];
 
 const anim = (name: string) => `/asl/anim/${name}.svg`;
+const alphabetAnim = (letter: string) => anim(`alphabet_${letter.toLowerCase()}`);
+
+export const ASL_ALPHABET_WITH_TUTORIALS: SignGuide[] = ASL_ALPHABET.map((sign) => ({
+  ...sign,
+  motion: true,
+  animUrl: alphabetAnim(sign.letter),
+}));
 
 export const COMMON_PHRASES: SignGuide[] = [
   {
