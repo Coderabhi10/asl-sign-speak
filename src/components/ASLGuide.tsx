@@ -6,21 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useSpeech } from "@/hooks/useSpeech";
 import {
-  ASL_ALPHABET,
+  ASL_ALPHABET_WITH_TUTORIALS,
   COMMON_PHRASES,
   getSignActionSteps,
   type SignGuide,
 } from "@/lib/aslGuide";
-import {
-  Search,
-  Volume2,
-  BookOpen,
-  Hand,
-  Play,
-  Pause,
-  RotateCcw,
-  MoveRight,
-} from "lucide-react";
+import { Search, Volume2, BookOpen, Hand, Play, Pause, RotateCcw, MoveRight } from "lucide-react";
 
 function SignIllustration({
   sign,
@@ -209,9 +200,9 @@ export function ASLGuide() {
   const { speak } = useSpeech();
 
   const filteredAlphabet = useMemo(() => {
-    if (!query.trim()) return ASL_ALPHABET;
+    if (!query.trim()) return ASL_ALPHABET_WITH_TUTORIALS;
     const q = query.toLowerCase();
-    return ASL_ALPHABET.filter(
+    return ASL_ALPHABET_WITH_TUTORIALS.filter(
       (s) => s.letter.toLowerCase().includes(q) || s.shape.toLowerCase().includes(q),
     );
   }, [query]);
@@ -286,8 +277,8 @@ export function ASLGuide() {
 
       <p className="mt-5 rounded-lg border border-border/40 bg-muted/30 p-3 text-xs text-muted-foreground">
         💡 Tip: <strong className="text-foreground">Tap any card</strong> to hear the word and play
-        an in-app animated tutorial of the hand motion. Follow the numbered steps below each card
-        to learn how to form the sign yourself.
+        an in-app animated tutorial of the hand motion. Follow the numbered steps below each card to
+        learn how to form the sign yourself.
       </p>
     </Card>
   );
