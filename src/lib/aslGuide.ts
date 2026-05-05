@@ -12,76 +12,9 @@ export type SignGuide = {
   actionSteps?: string[];
   motion?: boolean;
   imageUrl?: string;
-  /** Optional looping animated SVG/GIF that plays on hover to show the motion. */
+  /** Optional looping animated SVG/GIF that plays to show the hand tutorial. */
   animUrl?: string;
-  /** YouTube video ID showing a real person demonstrating the sign. */
-  videoId?: string;
-  /** Optional start time (seconds) inside the YouTube video. */
-  videoStart?: number;
-  /** Optional end time (seconds) inside the YouTube video. */
-  videoEnd?: number;
 };
-
-/** Curated YouTube videos (real people signing) keyed by sign label. */
-const SIGN_VIDEOS: Record<string, { id: string; start?: number; end?: number }> = {
-  HELLO: { id: "42uB7MxXTjc", start: 30, end: 75 },
-  "THANK YOU": { id: "77Wx33Dy7qY" },
-  YES: { id: "iIih_402iUM", start: 8, end: 22 },
-  NO: { id: "iIih_402iUM", start: 22, end: 40 },
-  PLEASE: { id: "wekksSIOhCk", start: 7, end: 22 },
-  SORRY: { id: "AMGGpAKltS0", start: 8, end: 25 },
-  "I LOVE YOU": { id: "jzJjdvTF10A" },
-  LOVE: { id: "M9x0rzhBQpY", start: 25 },
-  HELP: { id: "0s4mC3iqkhc" },
-  WATER: { id: "cykTsfduSqE" },
-  "EAT / FOOD": { id: "A_H-MYti3LQ", start: 8, end: 35 },
-  GOOD: { id: "F8K9j6nA3J4" },
-  BAD: { id: "F8K9j6nA3J4", start: 30 },
-  HAPPY: { id: "91foGHKuwL0", start: 30, end: 60 },
-  SAD: { id: "91foGHKuwL0", start: 60, end: 90 },
-  MOTHER: { id: "VOnHnaNiVSM", start: 15, end: 45 },
-  FATHER: { id: "VOnHnaNiVSM", start: 45, end: 75 },
-  FRIEND: { id: "VOnHnaNiVSM", start: 240 },
-  FAMILY: { id: "VOnHnaNiVSM" },
-  HOME: { id: "r9gCipM-wn0" },
-  HUNGRY: { id: "91foGHKuwL0", start: 180 },
-  DRINK: { id: "A_H-MYti3LQ", start: 60 },
-  HOT: { id: "91foGHKuwL0", start: 240 },
-  COLD: { id: "91foGHKuwL0", start: 270 },
-  HUG: { id: "M9x0rzhBQpY", start: 25 },
-  STOP: { id: "r9gCipM-wn0", start: 300 },
-  GO: { id: "r9gCipM-wn0", start: 320 },
-  WANT: { id: "r9gCipM-wn0", start: 360 },
-  NEED: { id: "r9gCipM-wn0", start: 380 },
-  MORE: { id: "r9gCipM-wn0", start: 200 },
-  WHAT: { id: "r9gCipM-wn0", start: 420 },
-  WHERE: { id: "r9gCipM-wn0", start: 440 },
-  WHO: { id: "r9gCipM-wn0", start: 460 },
-  HOW: { id: "r9gCipM-wn0", start: 480 },
-  UNDERSTAND: { id: "r9gCipM-wn0", start: 500 },
-  BEAUTIFUL: { id: "91foGHKuwL0", start: 300 },
-  WORK: { id: "r9gCipM-wn0", start: 540 },
-  SCHOOL: { id: "r9gCipM-wn0", start: 560 },
-  SLEEP: { id: "r9gCipM-wn0", start: 580 },
-  BATHROOM: { id: "r9gCipM-wn0", start: 600 },
-  "NICE TO MEET YOU": { id: "r9gCipM-wn0", start: 60 },
-  "SEE YOU LATER": { id: "r9gCipM-wn0", start: 90 },
-  NAME: { id: "r9gCipM-wn0", start: 120 },
-  "NAMASTE 🇮🇳": { id: "VxJ1mZjK6Sw" },
-};
-
-export const getSignVideo = (sign: SignGuide) => {
-  if (sign.videoId) {
-    return { id: sign.videoId, start: sign.videoStart, end: sign.videoEnd };
-  }
-  return SIGN_VIDEOS[sign.letter];
-};
-
-/** Build a YouTube search URL the user can open if no embedded video is curated. */
-export const getSignSearchUrl = (sign: SignGuide) =>
-  `https://www.youtube.com/results?search_query=${encodeURIComponent(
-    `how to sign ${sign.letter.replace(/🇮🇳/g, "").trim()} in ASL`,
-  )}`;
 
 const DEFAULT_STATIC_STEPS = [
   "Copy the hand shape shown in the picture.",
