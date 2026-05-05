@@ -9,8 +9,6 @@ import {
   ASL_ALPHABET,
   COMMON_PHRASES,
   getSignActionSteps,
-  getSignVideo,
-  getSignSearchUrl,
   type SignGuide,
 } from "@/lib/aslGuide";
 import {
@@ -20,22 +18,9 @@ import {
   Hand,
   Play,
   Pause,
+  RotateCcw,
   MoveRight,
-  ExternalLink,
 } from "lucide-react";
-
-function buildYouTubeEmbed(id: string, start?: number, end?: number) {
-  const params = new URLSearchParams({
-    autoplay: "1",
-    rel: "0",
-    modestbranding: "1",
-    playsinline: "1",
-    controls: "1",
-  });
-  if (start) params.set("start", String(Math.floor(start)));
-  if (end) params.set("end", String(Math.floor(end)));
-  return `https://www.youtube-nocookie.com/embed/${id}?${params.toString()}`;
-}
 
 function SignIllustration({
   sign,
@@ -47,17 +32,17 @@ function SignIllustration({
   animKey: number;
 }) {
   const [stillFailed, setStillFailed] = useState(false);
-  const video = getSignVideo(sign);
+  const [animFailed, setAnimFailed] = useState(false);
+  const hasAnim = !!sign.animUrl && !animFailed;
 
-  if (playing && video) {
+  if (playing && hasAnim) {
     return (
-      <iframe
-        key={`yt-${animKey}-${video.id}`}
-        src={buildYouTubeEmbed(video.id, video.start, video.end)}
-        title={`Video demo of the sign for ${sign.letter}`}
-        allow="autoplay; encrypted-media; picture-in-picture"
-        allowFullScreen
-        className="h-full w-full border-0"
+      <img
+        key={`anim-${animKey}`}
+        src={sign.animUrl}
+        alt={`Animated tutorial for the sign ${sign.letter}`}
+        className="h-full w-full object-contain p-2"
+        onError={() => setAnimFailed(true)}
       />
     );
   }
@@ -87,9 +72,7 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
   const [animKey, setAnimKey] = useState(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const video = getSignVideo(sign);
-  const hasVideo = !!video;
-  const searchUrl = getSignSearchUrl(sign);
+  const hasAnim = !!sign.animUrl;
   const label = sign.letter.replace(/_/g, " ");
   const actionSteps = getSignActionSteps(sign);
 
@@ -100,10 +83,12 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
   }, []);
 
   const startPlayback = () => {
-    if (!hasVideo) return;
+    if (!hasAnim) return;
     setAnimKey((k) => k + 1);
     setPlaying(true);
     if (timerRef.current) clearTimeout(timerRef.current);
+    // Auto-stop after a few loops so the still image returns
+    timerRef.current = setTimeout(() => setPlaying(false), 8000);
   };
 
   const stopPlayback = () => {
@@ -113,7 +98,7 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
 
   const handleCardActivate = () => {
     onSpeak(label);
-    if (hasVideo) {
+    if (hasAnim) {
       if (playing) stopPlayback();
       else startPlayback();
     }
@@ -146,17 +131,15 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
           </Badge>
         )}
 
-        {!playing && (
+        {!playing && hasAnim && (
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 transition-smooth group-hover:bg-black/20">
-            {hasVideo && (
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/90 text-primary-foreground opacity-0 shadow-glow transition-smooth group-hover:opacity-100">
-                <Play className="h-6 w-6 fill-current" />
-              </div>
-            )}
+            <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/90 text-primary-foreground opacity-0 shadow-glow transition-smooth group-hover:opacity-100">
+              <Play className="h-6 w-6 fill-current" />
+            </div>
           </div>
         )}
 
-        {hasVideo && (
+        {hasAnim && (
           <div className="absolute bottom-1 left-1 flex gap-1">
             <Button
               size="icon"
@@ -167,9 +150,21 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
                 if (playing) stopPlayback();
                 else startPlayback();
               }}
-              aria-label={playing ? `Stop video for ${label}` : `Play video for ${label}`}
+              aria-label={playing ? `Pause tutorial for ${label}` : `Play tutorial for ${label}`}
             >
               {playing ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+            </Button>
+            <Button
+              size="icon"
+              variant="ghost"
+              className="h-8 w-8 bg-sign-overlay text-sign-overlay-foreground backdrop-blur hover:bg-sign-overlay/80 hover:text-sign-overlay-foreground"
+              onClick={(e) => {
+                e.stopPropagation();
+                startPlayback();
+              }}
+              aria-label={`Replay tutorial for ${label}`}
+            >
+              <RotateCcw className="h-4 w-4" />
             </Button>
           </div>
         )}
@@ -204,16 +199,6 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
             ))}
           </ol>
         </div>
-        <a
-          href={searchUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
-        >
-          <ExternalLink className="h-3 w-3" />
-          {hasVideo ? "More videos on YouTube" : "Watch on YouTube"}
-        </a>
       </div>
     </Card>
   );
@@ -301,8 +286,8 @@ export function ASLGuide() {
 
       <p className="mt-5 rounded-lg border border-border/40 bg-muted/30 p-3 text-xs text-muted-foreground">
         💡 Tip: <strong className="text-foreground">Tap any card</strong> to hear the word and play
-        a real video demo of the sign right inside the card. Use the speaker icon to repeat the
-        word, or the YouTube link below to open more demos.
+        an in-app animated tutorial of the hand motion. Follow the numbered steps below each card
+        to learn how to form the sign yourself.
       </p>
     </Card>
   );
