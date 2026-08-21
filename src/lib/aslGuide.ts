@@ -258,6 +258,26 @@ const ACTION_STEPS: Record<string, string[]> = {
     "Keep fingers pointing upward.",
     "Bow your head slightly with respect.",
   ],
+  "NICE TO MEET YOU": [
+    "For NICE, slide your dominant flat palm once across the other flat palm.",
+    "For MEET, raise one index finger on each hand with palms facing each other.",
+    "Move the two index fingers toward each other until they meet in the center.",
+  ],
+  "SEE YOU LATER": [
+    "For SEE, point a V handshape from your eyes toward the other person.",
+    "For YOU, point toward the person you mean.",
+    "For LATER, hold an L handshape and turn the wrist forward.",
+  ],
+  BATHROOM: [
+    "Make a T handshape by closing a fist around the thumb between index and middle fingers.",
+    "Hold the T hand at shoulder height with the palm facing forward.",
+    "Rotate the wrist side to side twice.",
+  ],
+  SLEEP: [
+    "Hold an open hand in front of your face with the palm facing inward.",
+    "Lower the hand slowly while bringing the fingertips and thumb together.",
+    "Close your eyes and finish with the pinched hand near the chin.",
+  ],
 };
 
 export const getSignActionSteps = (sign: SignGuide) =>
@@ -408,8 +428,8 @@ const alphabetAnim = (letter: string) => anim(`alphabet_${letter.toLowerCase()}`
 
 export const ASL_ALPHABET_WITH_TUTORIALS: SignGuide[] = ASL_ALPHABET.map((sign) => ({
   ...sign,
-  motion: true,
-  animUrl: alphabetAnim(sign.letter),
+  motion: sign.letter === "J" || sign.letter === "Z",
+  animUrl: sign.letter === "J" || sign.letter === "Z" ? alphabetAnim(sign.letter) : undefined,
 }));
 
 export const COMMON_PHRASES: SignGuide[] = [
@@ -487,13 +507,11 @@ export const COMMON_PHRASES: SignGuide[] = [
     letter: "GOOD",
     shape: "Flat hand touches your chin, then drops down onto your other open palm.",
     motion: true,
-    animUrl: anim("sign_thank_you"),
   },
   {
     letter: "BAD",
     shape: "Flat hand touches your chin, then flips palm down and moves away.",
     motion: true,
-    animUrl: anim("sign_thank_you"),
   },
   {
     letter: "NAME",
@@ -663,27 +681,23 @@ export const COMMON_PHRASES: SignGuide[] = [
     shape:
       "Sign NICE (flat hand wipes across other flat palm), then MEET (two index fingers up, bring them together to 'meet').",
     motion: true,
-    animUrl: anim("sign_friend"),
   },
   {
     letter: "SEE YOU LATER",
     shape:
       "V sign at your eyes pointing forward (SEE), then L sign twisting forward at the wrist (LATER).",
     motion: true,
-    animUrl: anim("sign_hello"),
   },
   {
     letter: "BATHROOM",
     shape: "Make T sign (fist with thumb between index and middle), shake it side to side.",
     motion: true,
-    animUrl: anim("sign_where"),
   },
   {
     letter: "SLEEP",
     shape:
       "Open hand in front of your face, slowly close fingers as you draw the hand down past your eyes (eyes closing).",
     motion: true,
-    animUrl: anim("sign_sad"),
   },
   {
     letter: "HUNGRY",
@@ -735,6 +749,5 @@ export const COMMON_PHRASES: SignGuide[] = [
     shape:
       "Press both palms flat together in front of your chest (prayer position) and bow your head slightly. The traditional Indian greeting — widely used in Indian Sign Language too.",
     motion: true,
-    animUrl: anim("sign_please"),
   },
 ];
