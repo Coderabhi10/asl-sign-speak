@@ -174,6 +174,12 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
         </Button>
       </div>
       <div className="space-y-2">
+        <div className="flex items-center justify-between gap-2">
+          <h4 className="text-base font-black text-foreground">{label}</h4>
+          <Badge variant="outline" className="shrink-0 text-[10px]">
+            {sign.motion ? "motion" : "hold still"}
+          </Badge>
+        </div>
         <p className="text-sm leading-relaxed text-muted-foreground">{sign.shape}</p>
         <div className="rounded-lg border border-border/40 bg-muted/30 p-3">
           <div className="mb-2 flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-foreground">
