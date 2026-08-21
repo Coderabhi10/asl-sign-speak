@@ -408,8 +408,8 @@ const alphabetAnim = (letter: string) => anim(`alphabet_${letter.toLowerCase()}`
 
 export const ASL_ALPHABET_WITH_TUTORIALS: SignGuide[] = ASL_ALPHABET.map((sign) => ({
   ...sign,
-  motion: true,
-  animUrl: alphabetAnim(sign.letter),
+  motion: sign.letter === "J" || sign.letter === "Z",
+  animUrl: sign.letter === "J" || sign.letter === "Z" ? alphabetAnim(sign.letter) : undefined,
 }));
 
 export const COMMON_PHRASES: SignGuide[] = [

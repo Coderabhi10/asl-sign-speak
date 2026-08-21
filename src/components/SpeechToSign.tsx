@@ -130,12 +130,16 @@ export function SpeechToSign() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [speedMs, setSpeedMs] = useState(900); // ms per sign
+  const [speechSupported, setSpeechSupported] = useState(false);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const playTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const tokens = useMemo(() => tokenizeForSigning(text), [text]);
   const playable = useMemo(() => getPlayableTokens(tokens), [tokens]);
-  const speechSupported = useMemo(() => getSpeechRecognitionCtor() !== null, []);
+
+  useEffect(() => {
+    setSpeechSupported(getSpeechRecognitionCtor() !== null);
+  }, []);
 
   const stopPlayback = useCallback(() => {
     if (playTimerRef.current) {

@@ -118,12 +118,12 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
         </span>
         {sign.motion && !playing && (
           <Badge variant="secondary" className="absolute right-2 top-2 text-[10px]">
-            motion
+            moving sign
           </Badge>
         )}
 
         {!playing && hasAnim && (
-          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 transition-smooth group-hover:bg-black/20">
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-sign-overlay/0 transition-smooth group-hover:bg-sign-overlay/20">
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/90 text-primary-foreground opacity-0 shadow-glow transition-smooth group-hover:opacity-100">
               <Play className="h-6 w-6 fill-current" />
             </div>
@@ -223,9 +223,9 @@ export function ASLGuide() {
             <BookOpen className="h-5 w-5 text-primary-foreground" />
           </div>
           <div>
-            <h3 className="text-lg font-bold text-foreground">Sign back to them</h3>
+            <h3 className="text-lg font-bold text-foreground">Learn the exact sign</h3>
             <p className="text-xs text-muted-foreground">
-              Visual guide so you can sign to a deaf or mute person.
+              Match the handshape, palm direction, location, and movement in order.
             </p>
           </div>
         </div>
@@ -276,9 +276,8 @@ export function ASLGuide() {
       </Tabs>
 
       <p className="mt-5 rounded-lg border border-border/40 bg-muted/30 p-3 text-xs text-muted-foreground">
-        💡 Tip: <strong className="text-foreground">Tap any card</strong> to hear the word and play
-        an in-app animated tutorial of the hand motion. Follow the numbered steps below each card to
-        learn how to form the sign yourself.
+        <strong className="text-foreground">Accuracy note:</strong> Most fingerspelled letters are
+        held still; only J and Z move. Moving phrase tutorials play only when a motion is required.
       </p>
     </Card>
   );
