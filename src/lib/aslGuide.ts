@@ -487,13 +487,11 @@ export const COMMON_PHRASES: SignGuide[] = [
     letter: "GOOD",
     shape: "Flat hand touches your chin, then drops down onto your other open palm.",
     motion: true,
-    animUrl: anim("sign_thank_you"),
   },
   {
     letter: "BAD",
     shape: "Flat hand touches your chin, then flips palm down and moves away.",
     motion: true,
-    animUrl: anim("sign_thank_you"),
   },
   {
     letter: "NAME",
@@ -663,27 +661,23 @@ export const COMMON_PHRASES: SignGuide[] = [
     shape:
       "Sign NICE (flat hand wipes across other flat palm), then MEET (two index fingers up, bring them together to 'meet').",
     motion: true,
-    animUrl: anim("sign_friend"),
   },
   {
     letter: "SEE YOU LATER",
     shape:
       "V sign at your eyes pointing forward (SEE), then L sign twisting forward at the wrist (LATER).",
     motion: true,
-    animUrl: anim("sign_hello"),
   },
   {
     letter: "BATHROOM",
     shape: "Make T sign (fist with thumb between index and middle), shake it side to side.",
     motion: true,
-    animUrl: anim("sign_where"),
   },
   {
     letter: "SLEEP",
     shape:
       "Open hand in front of your face, slowly close fingers as you draw the hand down past your eyes (eyes closing).",
     motion: true,
-    animUrl: anim("sign_sad"),
   },
   {
     letter: "HUNGRY",
@@ -735,6 +729,5 @@ export const COMMON_PHRASES: SignGuide[] = [
     shape:
       "Press both palms flat together in front of your chest (prayer position) and bow your head slightly. The traditional Indian greeting — widely used in Indian Sign Language too.",
     motion: true,
-    animUrl: anim("sign_please"),
   },
 ];
