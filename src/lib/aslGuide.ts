@@ -258,26 +258,6 @@ const ACTION_STEPS: Record<string, string[]> = {
     "Keep fingers pointing upward.",
     "Bow your head slightly with respect.",
   ],
-  "NICE TO MEET YOU": [
-    "For NICE, slide your dominant flat palm once across the other flat palm.",
-    "For MEET, raise one index finger on each hand with palms facing each other.",
-    "Move the two index fingers toward each other until they meet in the center.",
-  ],
-  "SEE YOU LATER": [
-    "For SEE, point a V handshape from your eyes toward the other person.",
-    "For YOU, point toward the person you mean.",
-    "For LATER, hold an L handshape and turn the wrist forward.",
-  ],
-  BATHROOM: [
-    "Make a T handshape by closing a fist around the thumb between index and middle fingers.",
-    "Hold the T hand at shoulder height with the palm facing forward.",
-    "Rotate the wrist side to side twice.",
-  ],
-  SLEEP: [
-    "Hold an open hand in front of your face with the palm facing inward.",
-    "Lower the hand slowly while bringing the fingertips and thumb together.",
-    "Close your eyes and finish with the pinched hand near the chin.",
-  ],
 };
 
 export const getSignActionSteps = (sign: SignGuide) =>
