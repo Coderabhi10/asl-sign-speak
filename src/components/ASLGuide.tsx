@@ -26,6 +26,20 @@ function SignIllustration({
   const [animFailed, setAnimFailed] = useState(false);
   const hasAnim = !!sign.animUrl && !animFailed;
 
+  if (sign.videoUrl) {
+    const separator = sign.videoUrl.includes("?") ? "&" : "?";
+    return (
+      <iframe
+        key={`video-${animKey}-${playing}`}
+        src={`${sign.videoUrl}${separator}autoplay=${playing ? "1" : "0"}&muted=1&title=0&byline=0&portrait=0`}
+        title={`Real signer demonstration for ${sign.letter}`}
+        className="h-full w-full border-0 bg-sign-surface"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowFullScreen
+      />
+    );
+  }
+
   if (playing && hasAnim) {
     return (
       <img
@@ -63,7 +77,7 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
   const [animKey, setAnimKey] = useState(0);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const hasAnim = !!sign.animUrl;
+  const hasTutorial = !!sign.videoUrl || !!sign.animUrl;
   const label = sign.letter.replace(/_/g, " ");
   const actionSteps = getSignActionSteps(sign);
 
@@ -74,7 +88,7 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
   }, []);
 
   const startPlayback = () => {
-    if (!hasAnim) return;
+    if (!hasTutorial) return;
     setAnimKey((k) => k + 1);
     setPlaying(true);
     if (timerRef.current) clearTimeout(timerRef.current);
@@ -89,7 +103,7 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
 
   const handleCardActivate = () => {
     onSpeak(label);
-    if (hasAnim) {
+    if (hasTutorial) {
       if (playing) stopPlayback();
       else startPlayback();
     }
@@ -122,7 +136,7 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
           </Badge>
         )}
 
-        {!playing && hasAnim && (
+        {!playing && hasTutorial && (
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-sign-overlay/0 transition-smooth group-hover:bg-sign-overlay/20">
             <div className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/90 text-primary-foreground opacity-0 shadow-glow transition-smooth group-hover:opacity-100">
               <Play className="h-6 w-6 fill-current" />
@@ -130,7 +144,7 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
           </div>
         )}
 
-        {hasAnim && (
+        {hasTutorial && (
           <div className="absolute bottom-1 left-1 flex gap-1">
             <Button
               size="icon"
@@ -177,7 +191,7 @@ function SignCard({ sign, onSpeak }: { sign: SignGuide; onSpeak: (t: string) => 
         <div className="flex items-center justify-between gap-2">
           <h4 className="text-base font-black text-foreground">{label}</h4>
           <Badge variant="outline" className="shrink-0 text-[10px]">
-            {sign.motion ? "motion" : "hold still"}
+            {sign.videoUrl ? "real signer" : sign.motion ? "motion" : "hold still"}
           </Badge>
         </div>
         <p className="text-sm leading-relaxed text-muted-foreground">{sign.shape}</p>
@@ -282,8 +296,9 @@ export function ASLGuide() {
       </Tabs>
 
       <p className="mt-5 rounded-lg border border-border/40 bg-muted/30 p-3 text-xs text-muted-foreground">
-        <strong className="text-foreground">Accuracy note:</strong> Most fingerspelled letters are
-        held still; only J and Z move. Moving phrase tutorials play only when a motion is required.
+        <strong className="text-foreground">Accuracy note:</strong> Phrase tutorials use
+        human-performed reference videos. Most fingerspelled letters are held still; only J and Z
+        require movement.
       </p>
     </Card>
   );
