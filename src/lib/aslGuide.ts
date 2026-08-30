@@ -14,6 +14,8 @@ export type SignGuide = {
   imageUrl?: string;
   /** Optional looping animated SVG/GIF that plays to show the hand tutorial. */
   animUrl?: string;
+  /** Real signer reference video, shown inside the tutorial card. */
+  videoUrl?: string;
 };
 
 const DEFAULT_STATIC_STEPS = [
@@ -412,7 +414,7 @@ export const ASL_ALPHABET_WITH_TUTORIALS: SignGuide[] = ASL_ALPHABET.map((sign) 
   animUrl: sign.letter === "J" || sign.letter === "Z" ? alphabetAnim(sign.letter) : undefined,
 }));
 
-export const COMMON_PHRASES: SignGuide[] = [
+const COMMON_PHRASE_DATA: SignGuide[] = [
   {
     letter: "HELLO",
     shape:
@@ -731,3 +733,61 @@ export const COMMON_PHRASES: SignGuide[] = [
     motion: true,
   },
 ];
+
+// Human-performed ASL reference clips replace the former symbolic animations.
+// The clips are shown directly inside the app so learners can see handshape,
+// palm orientation, body position, and movement together.
+const REAL_SIGN_VIDEO_IDS: Record<string, string> = {
+  HELLO: "345973004",
+  "THANK YOU": "346804430",
+  YES: "346778768",
+  NO: "345799501",
+  PLEASE: "345536463",
+  SORRY: "345577184",
+  "I LOVE YOU": "346491546",
+  HELP: "345804607",
+  WATER: "344221671",
+  "EAT / FOOD": "345536275",
+  GOOD: "344398148",
+  BAD: "345556236",
+  NAME: "345803647",
+  LOVE: "346612501",
+  FRIEND: "345981419",
+  FAMILY: "345577346",
+  HAPPY: "345801212",
+  SAD: "345555398",
+  MOTHER: "345536499",
+  FATHER: "344408800",
+  HOME: "344359901",
+  WORK: "344359531",
+  SCHOOL: "345801623",
+  MORE: "345563151",
+  STOP: "345803235",
+  GO: "345800220",
+  WANT: "345798094",
+  NEED: "345588222",
+  UNDERSTAND: "345576018",
+  WHAT: "345975305",
+  WHERE: "345537550",
+  WHO: "345578041",
+  HOW: "345975125",
+  SLEEP: "345563279",
+  HUNGRY: "345576378",
+  DRINK: "345536731",
+  HOT: "346512139",
+  COLD: "345589444",
+  HUG: "346743076",
+  BEAUTIFUL: "345577259",
+};
+
+export const COMMON_PHRASES: SignGuide[] = COMMON_PHRASE_DATA.map((sign) => {
+  const videoId = REAL_SIGN_VIDEO_IDS[sign.letter];
+  if (!videoId) return { ...sign, animUrl: undefined };
+
+  return {
+    ...sign,
+    imageUrl: undefined,
+    animUrl: undefined,
+    videoUrl: `https://player.vimeo.com/video/${videoId}`,
+  };
+});
